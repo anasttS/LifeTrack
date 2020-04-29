@@ -1,0 +1,84 @@
+.display_none{
+    display:none;
+}
+.cursor_pointer{
+    cursor: pointer;
+}
+
+._error_messages{
+    text-align:center;
+    color:red;
+    font-size:13px;
+    margin-bottom:20px;
+}
+._error_messages p{
+    text-align:center;
+    color:red;
+    font-size:13px;
+}
+
+.cabinet_passEye {position:relative;display:block;}
+.cabinet_passEye input {padding-right:35px;}
+.cabinet_passEye input::-ms-reveal, .passEye input::-ms-clear {display:none}
+.cabinet_passEye ._eye {position:absolute;right:10px;top:50%;margin-top:-4px;display:block;height:10px;width:18px;background:url(../assets/img/common/passeye.png) no-repeat left 2px;cursor:pointer;}
+.cabinet_passEye ._openEye {background-position:left bottom;}
+
+/*************
+    LOADINGS
+***************/
+
+.loading {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 800;
+    /*display:none;*/
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 1;
+    backdrop-filter: blur(5px);
+}
+.loading>div {
+    width: 64px;
+    height: 64px;
+    margin: 200px auto;
+    background-image: url('../assets/img/common/loading.gif');
+}
+.loading_bg{
+    background-image: url('../assets/img/common/loading.gif');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.modal-loading{
+    display:none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 800;
+    /*display:none;*/
+    width: 100%;
+    height: 100%;
+    background-color: #ecf0f5;
+    opacity: 1;
+    backdrop-filter: blur(5px);
+}
+.modal-loading>div {
+    width: 64px;
+    height: 64px;
+    margin: 150px auto;
+    background-image: url('../assets/img/common/loading.gif');
+}
+
+.loading_btn{
+    background-repeat: no-repeat;
+    background-position: 20px 50%;
+    background-size: 20px;
+    background-image: url('../assets/img/common/loading.gif');
+    /*background-image: url('../img/common/loading_btn_white.svg');*/
+    padding-left:55px;
+}

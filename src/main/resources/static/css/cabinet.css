@@ -1,0 +1,308 @@
+/*************
+    COMMON
+***************/ 
+.display_none {
+    display: none;
+}
+.nowrap {
+    white-space: nowrap;
+}
+.position_relative {
+    position: relative;
+}
+.a {
+    color: #496078;
+    text-decoration: underline;
+    font-weight: 400;
+}
+
+.event_format{
+    white-space:pre-wrap;
+}
+
+._empty{
+    color: #aaa;
+}
+.remark{
+    font-size:13px;
+    color:#777;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.overlay i{
+    color:#4f98c3!important;
+}
+
+.info_panel{
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #fcf8e3;
+}
+
+section.content h1{
+    font-size:25px;
+    margin-top: 20px; 
+    padding-left: 20px; 
+    margin-bottom: 40px; 
+}
+
+
+/*************
+    BODY-CALENDAR
+***************/ 
+body.body-calendar small{
+    font-size:14px;
+}
+body.body-calendar .block_settings{
+    margin-top:20px;
+}
+
+body.body-calendar .remark{
+    font-size:0.85em;
+    color:#888;
+}
+
+body.body-calendar-lenta #jscontainer_lenta{
+    width:92%;
+    margin:0 auto 50px;
+}
+
+
+/********************************
+    BODY-CALENDAR-LENTA
+**********************************/ 
+body.body-calendar-lenta #jscontainer_lenta ._empty_alert{
+    display:none;
+    width: 308px;
+    height: 309px;
+    margin: 50px auto;
+    /*background-image: url('../../img/empty.png');*/
+    text-align:center;
+    padding-top:150px;
+    color:#444;
+}
+
+body.body-calendar-lenta ._title_y{
+     margin-top:30px;
+    font-size:35px;
+    text-align:center;
+    font-weight:600;
+   /* text-shadow:2px 2px 0px rgba(0,0,0,0.2);
+        -webkit-text-shadow:1px 1px 0px rgba(0,0,0,0.2);
+            -moz-text-shadow:1px 1px 0px rgba(0,0,0,0.2);*/
+    color:#ddd;
+}
+
+body.body-calendar-lenta ._title_m{
+    font-size:20px;
+    text-align:center;
+    font-weight:600;
+    text-shadow:2px 2px 0px rgba(255,255,255,0.7);
+        -webkit-text-shadow:1px 1px 0px rgba(255,255,255,0.7);
+            -moz-text-shadow:1px 1px 0px rgba(255,255,255,0.7);
+    color:#555;
+    text-transform: capitalize;
+    margin-top:30px;
+}
+
+body.body-calendar-lenta ._title_d{
+   /* font-size:15px;    */
+    /*text-align:center;*/
+    /*font-weight:600;*/
+    /*color:#888;*/
+    /*width:30px;
+    height:30px;
+    line-height:30px;*/
+    
+   /* background-color: rgba(0,0,0,0.2);*/
+   display:inline-block;
+   margin-top:20px;
+   margin-bottom:5px;
+
+}
+
+body.body-calendar-lenta ._event_item{
+    position:relative;
+    padding-left:25px;
+}
+body.body-calendar-lenta ._event_item ._event_color_marker{
+    position:absolute;
+    top:6px;
+    left: 10px;
+    display:inline-block;
+    background-color:#fff;    
+    width:10px;
+    height:10px;
+    border:solid 1px #ddd;
+}
+
+body.body-calendar-lenta ._btn_load_mode{
+     text-align: center;
+     margin-bottom:80px;
+}
+
+
+/********************************
+    BODY-PROFILE
+**********************************/ 
+body.body-profile ._block-personal{
+    max-width:480px;
+    margin: 100px auto;
+}
+
+/********************************
+    BODY-INDEX
+**********************************/ 
+body.body-index .welcome_panel{
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #fcf8e3;
+}
+
+body.body-index .box{
+    min-height:200px;
+}
+body.body-index .box-header h3{
+    font-size:1.25em;
+    font-size:14px;
+    font-weight:600;
+    color:#888;
+}
+
+/**  SUMMARY  **/
+
+/** weektable  **/
+body.body-index table.weektable{
+    width:100%;
+    font-size:5px;
+}
+
+body.body-index table.weektable td{
+    border:solid 2px #ffffff; 
+    background-color: #d0fbb6; 
+    background-color: #eee; 
+    width:1.92%; 
+    height:5px;
+}
+
+body.body-index table.weektable ._hr{
+    background-color: #fff;
+    height:3px; 
+}
+
+body.body-index .block_previous_years .box-body{
+    max-height: 300px;
+    overflow-y: auto;
+}
+body.body-index .block_previous_years .box-body .label{
+    display:inline-block;
+    margin-top:20px;
+}
+
+/* ==========================================================================
+   forms
+   ========================================================================== */
+.form__button{
+    margin-top:40px;
+    text-align:center;
+}   
+.btn_red, .btn_red_sm {
+    padding: 1em 3em;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    background-image: url(../css/grad_red.jpg);
+    background: linear-gradient(to left,#ed0f82, #f04d38); 
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center center;
+    background-color: #f56363;
+    line-height: 1.5;
+    border: none;
+    border-radius: 3px;
+    font-weight: 400;
+    text-transform: uppercase;
+    /*transition: all 0.3s ease-in-out;*/
+}
+.btn_red:hover, .btn_red_sm:hover {
+    color: #fff;   
+    background-image: none;    
+    background-color: #fa5454;
+}
+.btn_red:active, .btn_red:focus, .btn_red:active:hover, .btn_red:active:focus, .btn_red_sm:active, .btn_red_sm:focus, .btn_red_sm:active:hover, .btn_red_sm:active:focus {
+    color: #fff;
+    outline: none;
+    background-color: #fa5454;
+}
+
+.btn_red_sm{
+    font-size: 15px;
+    height:34px;
+    line-height: 34px;
+    vertical-align: middle;
+    padding: 0px 15px;
+    text-transform: none;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #8A8A8A;
+}
+.form-control:-moz-placeholder {
+    color: #8A8A8A;
+}
+.form-control::-moz-placeholder {
+    color: #8A8A8A;
+}
+.form-control:-ms-input-placeholder {
+    color: #8A8A8A;
+}
+.form-control {
+    background-color: #fff;
+    border: 1px solid #f56363;
+    color: #4c4c4c;
+    box-shadow: none;
+    height: 60px;
+    font-weight: 400;
+    font-size: 16px;
+   /* padding: 0 1.5em;*/
+}
+.form-control:focus {
+    border-color: #fa5454;
+    outline: 0;
+    box-shadow: none;
+}
+.form-group .input-group-addon{
+    border-color: #f56363!important;
+} 
+.sub-form .btn {
+    padding: 1em;
+}
+#mc-form .btn-default {
+    height: 60px;
+}
+#mc-notification {
+    margin: 0.75em 0 0;
+    font-weight: 400;
+    color: #8A8A8A;
+    font-size: 17px;
+}
+.error {
+    color: #FF4C4C !important;
+}
+.valid {
+    color: #4CAF50 !important;
+}
+.error i, .valid i {
+    padding-right: .5em;
+}
+
+/* ==========================================================================
+   BODY CALENDAR
+   ========================================================================== */
+body.body-calendar h2{
+    font-size:20px;
+    text-transform: capitalize;
+}
+
+

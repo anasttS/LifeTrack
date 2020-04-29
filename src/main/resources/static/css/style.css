@@ -1,0 +1,132 @@
+#sticky-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin-bottom: 10vh;
+    background-color: #f7f7f7;
+}
+
+.video-container {
+    padding-top: 25px;
+    padding-left: 20px;
+}
+.card-img-left {
+    width: 100%;
+}
+.small-video-card:hover{
+    padding: 5px;
+    min-width: 0;
+    background-clip: border-box;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.small-video-card {
+    padding: 5px;
+    min-width: 0;
+    background-clip: border-box;
+    margin-bottom: 20px;
+}
+.note-field {
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    padding: 10px;
+}
+.card-container {
+    padding-top: 10px;
+}
+.card-container .d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.card-container .card {
+    margin: 6px;
+}
+.card-container .card-link {
+    margin-left: 10px;
+}
+.img-thumbnail2 {
+    padding: 0.25rem;
+    background-color: #fff;
+    border-radius: 50%;
+    max-width: 100%;
+}
+.logo {
+    font-family: 'Monoton', cursive;
+    font-size: 30px;
+    padding: 0px;
+    color: white;
+}
+.note {
+    width: 90%;
+}
+.login {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 20px;
+}
+.video-info {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.likes-count {
+    margin-right: 10px;
+}
+.small-channel-image {
+    border-radius: 50%;
+    max-width: 100%;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+.video-description {
+    margin-left: 20px;
+    margin-right: 50px;
+}
+.comment-text {
+    margin-left: 10px;
+}
+.comment-card {
+    padding: 5px;
+    min-width: 0;
+    background-clip: border-box;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.125);
+    margin-bottom: 10px;
+}
+.add-video-card {
+    padding: 3px;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0.25rem;
+    color: #495057;
+}
+.channel-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    justify-content: flex-start;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+.channel-header-image {
+
+}
+.channel-header-description {
+    margin-left: 20px;
+}
+.channel-container {
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
