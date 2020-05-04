@@ -75,6 +75,7 @@
             <div class="row">
                 <div class="col-sm-7">
                     <h1>Регистрация</h1>
+                ${message?ifExists}
                     <div class="">
                         <form method="post" action="/signUp">
                             <input type="hidden" name="type" value="0">
@@ -83,14 +84,20 @@
                             </div>
                             <div class="form-group">
                                 <label>Ваш email *</label>
-                                <input type="email" class="form-control" placeholder="Ваш email" name="email"
-                                       required>
+                                <input type="text" class="form-control" id="email" placeholder="Ваш email" name="email"
+                                       onchange="checkEmail()"required>
                             </div>
                             <div class="form-group">
                                 <label>Пароль *</label>
-                                <input type="password" oninput="checkPassword()" class="form-control"
+                                <input type="password" ONINPUT="checkPassword()" class="form-control"
                                        placeholder="Придумайте пароль"
-                                       name="password" id="password" required>
+                                       name="password" id="password1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Повторите пароль *</label>
+                                <input type="password" class="form-control"
+                                       placeholder="Повторите пароль"
+                                       name="password2" id="password2" onchange="checkPasswords()" required>
                             </div>
 
                             <div class="form-group">
@@ -101,9 +108,9 @@
 
                             <div class="form-group">
                                 <label>Дата рождения *</label>
-                                <input type="date" class="form-control" placeholder="Ваш день рождения" name="birthday"
-                                       required>
+                                <input type="date" class="form-control" placeholder="Ваш день рождения" name="birthday">
                             </div>
+                            <input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="form-group">
                                 <div class="col-12" style="color: #000000; font-size: 16px">
                                     Пароль должен удовлетворять требованиям:
@@ -123,7 +130,9 @@
 
                             <div class="form-group">
                                 <br>
-                                <button type="submit" class="btn">Зарегистрироваться</button>
+                                <button type="submit"  class="btn">
+                                    Зарегистрироваться
+                                </button>
                             </div>
 
                         </form>
@@ -138,16 +147,33 @@
     </div>
 </section>
 <script>
+
+    function checkPasswords() {
+        var password1 = document.getElementById('password1');
+        var password2 = document.getElementById('password2');
+        if (password1.value !== password2.value) {
+            alert('Проверьте пароли!');
+            return false;
+        }
+    }
+
+    function checkEmail() {
+        var email = document.getElementById('email');
+        var email_regexp = /[0-9a-zа-я_A-ZА-Я]+@[0-9a-zа-я_A-ZА-Я^.]+\.[a-zа-яА-ЯA-Z]{2,4}/i;
+        if (!email_regexp.test(email.value)) {
+            alert('Проверьте email');
+            return false;
+        }
+    }
+
     function checkPassword() {
-        var password = document.getElementById('password').value;
+        var password = document.getElementById('password1').value;
         var passwordLengthError = document.getElementById('passwordLengthError');
         var passwordContainUpperCaseLetterError = document.getElementById('passwordContainUpperCaseLetterError');
         var passwordContainNumberError = document.getElementById('passwordContainNumberError');
-        var confirmPassword = document.getElementById('confirmPassword');
         var cond1 = false;
         var cond2 = false;
         var cond3 = false;
-        console.log(password);
         if (password.length < 8) {
             passwordLengthError.style.color = "red";
             cond1 = false;
@@ -170,26 +196,14 @@
             cond3 = true;
         }
 
+        if (!(cond1 && cond2 && cond3)) {
+            return false;
+        }
+
     }
 
 </script>
-
-<!— footer —>
-<!--site-footer-->
-<footer class="site-footer section-spacing text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <small>LifeTrack 2020</small>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
 <script src="js/lp/waypoints.min.js"></script>
 <script src="js/lp/jquery.animateNumber.min.js"></script>
 <script src="js/lp/waypoints-sticky.min.js"></script>
