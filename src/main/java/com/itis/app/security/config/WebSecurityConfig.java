@@ -1,5 +1,7 @@
 package com.itis.app.security.config;
 
+import com.itis.app.filters.CustomFilter;
+import com.itis.app.filters.CustomFilter2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 @EnableWebSecurity
 @Configuration
@@ -25,11 +28,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+//        super.configure(http);
+//        http.csrf().disable();
+//
+        http.addFilterAfter(new CustomFilter(), FilterSecurityInterceptor.class);
+//        http.addFilterAfter(new CustomFilter2(), CustomFilter.class);
 
         http.authorizeRequests()
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/main").permitAll()
+                .antMatchers("/activate/**").permitAll()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/events").authenticated()
                 .antMatchers("/notes").authenticated()
@@ -40,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/signIn")
                 .usernameParameter("email")
                 .defaultSuccessUrl("/profile")
-                .failureUrl("/signIn?error")
+                .failureUrl("/signInError")
                 .permitAll();
 
     }
