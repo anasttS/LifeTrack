@@ -12,13 +12,6 @@ public class CustomScope implements Scope {
 
     @Override
     public Object get(String name, ObjectFactory<?> objectFactory) {
-//        if (!scopedObjects.containsKey(name)) {
-//            scopedObjects.put(name, getClass());
-//        }
-//        System.out.println(name);
-//        return scopedObjects.get(name);
-        //Object o = objectFactory.getObject();
-        //System.out.println("Created object: " + o.toString());
         System.out.println("Code: " + name);
         scopedObjects.add(name);
         return String.class;

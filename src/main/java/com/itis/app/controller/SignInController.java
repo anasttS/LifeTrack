@@ -18,6 +18,9 @@ public class SignInController {
     @Autowired
     ConfirmService confirmService;
 
+    @Autowired
+    CustomBean bean;
+
     @GetMapping("/signIn")
     public ModelAndView getSignInPage(Authentication authentication){
         ModelAndView modelAndView = new ModelAndView();
@@ -32,8 +35,8 @@ public class SignInController {
     @GetMapping("/activate")
     @Scope("custom")
     public String activate(Model model, @RequestParam("code") String code) {
-        CustomBean customBean = new CustomBean();
-        customBean.activate(code);
+//        CustomBean customBean = new CustomBean();
+        bean.activate(code);
         boolean isActivated = confirmService.activateUser(code);
         if (isActivated) {
             model.addAttribute("message", "User successfully activated");

@@ -1,6 +1,5 @@
 package com.itis.app.scope;
 
-import com.itis.app.scope.customScope.CustomScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -9,6 +8,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Configuration
 public class ScopesConfig {
+
     @Bean
     @RequestScope
     public RequestBean requestScopedBean() {
@@ -22,7 +22,6 @@ public class ScopesConfig {
     }
 
     @Bean
-    @Scope("custom")
     public CustomBean customScopedBean() {
         return new CustomBean();
     }

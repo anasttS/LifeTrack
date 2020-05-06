@@ -20,8 +20,9 @@ public class CustomBean {
         System.out.println("User is activated");
     }
 
-    public void disactivate(String code){
+    public void deactivate(String code){
         customScope.remove(code);
         System.out.println("User is deleted");
     }
+
 }
