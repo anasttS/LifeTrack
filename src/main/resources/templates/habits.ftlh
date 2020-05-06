@@ -69,7 +69,7 @@
                     <li class="dropdown nav-item user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa " aria-hidden="true"></i>
-                            <span class="hidden-xs">Настя</span>
+                            <span class="hidden-xs">${user.username}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Body -->
@@ -77,7 +77,7 @@
 
                             </li>
                             <li class="user-body">
-                                <a href="/main">
+                                <a href="/logout">
                                     <i class="fa " aria-hidden="true"></i>
                                     <span>Выйти</span>
                                 </a>

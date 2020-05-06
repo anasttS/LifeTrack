@@ -18,10 +18,13 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String username;
+
+    @Column(unique = true)
     private String email;
+
     private String hashPassword;
     private Date birthday;
 
@@ -30,4 +33,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+
+    private  String confirmCode;
 }

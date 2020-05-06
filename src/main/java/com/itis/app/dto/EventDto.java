@@ -1,4 +1,5 @@
-package com.itis.app.model;
+package com.itis.app.dto;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,21 +15,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-public class Event {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EventDto {
     private Long id_event;
-
     private String name;
     private String description;
-    private String password;
     private Date date;
     private Time time;
-
-//    // у одного пользователя много событий
-//    @ManyToOne(fetch = FetchType.EAGER)
     private Long idu;
-
 }

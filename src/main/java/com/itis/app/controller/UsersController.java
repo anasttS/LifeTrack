@@ -7,6 +7,7 @@ import com.itis.app.scope.SessionBean;
 import com.itis.app.security.details.UserDetailsImpl;
 import com.itis.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestScope
+@Scope("custom")
 public class UsersController {
-
-    @Autowired
-    SessionBean mySessionBean;
 
     @Autowired
     RequestBean myRequestBean;
@@ -32,6 +30,7 @@ public class UsersController {
 
     @GetMapping("/users")
     @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestScope
     public ModelAndView getUsersPage(Authentication authentication, Model model) {
         System.out.println(myRequestBean.getData(authentication));
         ModelAndView modelAndView = new ModelAndView();
@@ -44,4 +43,5 @@ public class UsersController {
         }
         return modelAndView;
     }
+
 }

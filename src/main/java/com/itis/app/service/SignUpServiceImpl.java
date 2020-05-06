@@ -6,7 +6,9 @@ import com.itis.app.model.Role;
 import com.itis.app.model.State;
 import com.itis.app.model.User;
 import com.itis.app.repository.UserRepository;
+import jdk.nashorn.internal.objects.annotations.ScriptClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
@@ -40,15 +42,12 @@ public class SignUpServiceImpl implements SignUpService {
         String message ="Hello, "+   user.getUsername() +"! \n" +
                         "Welcome to LifeTrack. Please, visit next link: " + "http://localhost:8080/activate?code=" +  user.getConfirmCode();
 
-
-
-//        System.out.println(message);
-
         MailMessage mailMessage = MailMessage.builder()
                 .mailTo(user.getEmail())
                 .subject("Activation")
                 .text(message)
                 .build();
+
         emailService.sendMail(mailMessage);
 
     }

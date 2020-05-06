@@ -8,6 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 
+
 public class CustomFilter extends GenericFilterBean {
 
     @Override
@@ -16,8 +17,8 @@ public class CustomFilter extends GenericFilterBean {
         if (code != null) {
             System.out.println("User confirmed his/her account with code " + code);
             filterChain.doFilter(servletRequest, servletResponse);
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
         }
-        filterChain.doFilter(servletRequest, servletResponse);
     }
-
 }

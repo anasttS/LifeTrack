@@ -8,6 +8,6 @@ import java.util.List;
 public interface UserService {
     void save(User user);
     List<UserDto> getAllUsers();
-
-
+    void delete(Long id);
+    String getCodeFromUserByUserId(Long id);
 }

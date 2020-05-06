@@ -5,20 +5,23 @@ import com.itis.app.model.User;
 import com.itis.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Optional;
 
 @Service
+//@Scope(value = "custom", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ConfirmServiceImpl implements ConfirmService {
 
     @Autowired
     UserRepository userRepository;
 
+//    @Autowired
+//    CustomBean customBean;
+
     @Override
+
     public boolean activateUser(String code) {
+       // customBean.activate(code);
         Optional<User> user = userRepository.findByConfirmCode(code);
 
         if (!user.isPresent()) {

@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@PreAuthorize("isAuthenticated()")
 public class HabitsController {
 
 
     @GetMapping("/habits")
+
     public ModelAndView getHabitsPage(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("habits");

@@ -1,3 +1,4 @@
+<#import "/spring.ftl" as spring />
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,7 @@
 
                             </li>
                             <li class="user-body">
-                                <a href="/main">
+                                <a href="/logout">
                                     <i class="fa " aria-hidden="true"></i>
                                     <span>Выйти</span>
                                 </a>
@@ -143,38 +144,43 @@
     <div class="content-wrapper">
 
         <section class="content">
-            <h1>Доброе утро, ${user.username}! </h1>
+            <h1>Доброе день, ${user.username} </h1>
 
             <!-- Main content -->
             <div class="container">
                 <div class="row">
-                    <div class="col-5">
-                        <div class="row-2">
-                            <img src="assets/img/desk.jpg" class="img-thumbnail2 justify-content-center" alt="..."
-                                 width="280px"
-                                 height="280px">
-                            <p></p>
-                            <input type="file" class="btn cta-btn" id="preview" name="fileP">
-                        </div>
-                    </div>
+                    <#--<div class="col-5">-->
+                        <#--<div class="row-2">-->
+                            <#--<img src="assets/img/desk.jpg" class="img-thumbnail2 justify-content-center" alt="..."-->
+                                 <#--width="280px"-->
+                                 <#--height="280px">-->
+                            <#--<p></p>-->
+                            <#--&lt;#&ndash;<input type="file" class="btn cta-btn" id="preview" name="fileP">&ndash;&gt;-->
+                        <#--</div>-->
+                    <#--</div>-->
                     <div class="col-7">
                         <div class="row-10">
+
+                            <#--<@spring.bind "profileForm"/>-->
                             <form method="post" action="/profile">
                                 <div class="form-group">
                                     <label for="inputUsername"></label>
                                     <input type="text" class="form-control" id="inputUsername"
                                            placeholder="Enter username"
                                            name="username" value="${user.username}">
+                                     <#--<@spring.formInput "profileForm.username"/>-->
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail"></label>
                                     <input type="email" class="form-control" id="inputEmail" placeholder="Enter email"
                                            name="email" value="${user.email}">
+                                     <#--<@spring.formInput "profileForm.email"/>-->
                                 </div>
                                 <div class="form-group">
                                     <label for="example-date-input"></label>
                                     <input class="form-control" type="date" id="example-date-input" name="birthday"
-                                           value="${user.birthDate}">
+                                           value="${user.birthday}">
+                                     <#--<@spring.formInput "profileForm.birthday"/>-->
                                 </div>
 
                                 <br>
@@ -184,8 +190,8 @@
                     </div>
                 </div>
             </div>
-            <p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>
-
+            <#--<p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>-->
+<br><br>
             <div class="raw justify-content-start">
 
                 <p>
@@ -219,7 +225,7 @@
                 <div class="card-body" style="height: 185px;">
                     <h5 class="card-title">Месяц назад</h5>
                     <p class="card-text">Лучший день!</p>
-                    <form action="events.ftlh" method="get">
+                    <form action="/event" method="get">
                         <button type="button" class="btn btn_red " style="margin-right: 5%" name="id"
                                 data-toggle="modal"
                                 data-target="#event">
@@ -261,7 +267,6 @@
                     <br>
                     <label>
                                 <textarea style="width: 468px">
-    jdsnfkjnsljfnjhlsd
 </textarea>
                     </label>
                 </div>
@@ -271,26 +276,26 @@
     </div>
 
 
-    <!--AvaStat counter-->
-    <script type="text/javascript">
-        var u = '';
-        u = 'Настя ';
-        if (document.cookie) {
-            new Image().src = "/ava/statistic/dot?rf=" +
-                    myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
-                            "&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?
-                            screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)
-                    + "&u=" + u
-                    + "&r=" + Math.random();
-        }
+    <#--<!--AvaStat counter&ndash;&gt;-->
+    <#--<script type="text/javascript">-->
+        <#--var u = '';-->
+        <#--u = 'Настя ';-->
+        <#--if (document.cookie) {-->
+            <#--new Image().src = "/ava/statistic/dot?rf=" +-->
+                    <#--myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :-->
+                            <#--"&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?-->
+                            <#--screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)-->
+                    <#--+ "&u=" + u-->
+                    <#--+ "&r=" + Math.random();-->
+        <#--}-->
 
-        function myescape(str) {
-            str = str.replace(/https:\/\//, "");
-            str = str.replace(/http:\/\//, "");
-            return escape(str.replace(/\//g, "*"));
-        }
-    </script>
-    <!--/AvaStat-->
+        <#--function myescape(str) {-->
+            <#--str = str.replace(/https:\/\//, "");-->
+            <#--str = str.replace(/http:\/\//, "");-->
+            <#--return escape(str.replace(/\//g, "*"));-->
+        <#--}-->
+    <#--</script>-->
+    <#--<!--/AvaStat&ndash;&gt;-->
 
 
 </div>
@@ -317,38 +322,38 @@
 <script src="js/main.common.js"></script>
 
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function () {
-            try {
-                w.yaCounter50640868 = new Ya.Metrika({
-                    id: 50640868,
-                    clickmap: true,
-                    trackLinks: true,
-                    accurateTrackBounce: true,
-                    webvisor: true
-                });
-            } catch (e) {
-            }
-        });
+<#--<!-- Yandex.Metrika counter &ndash;&gt;-->
+<#--<script type="text/javascript">-->
+    <#--(function (d, w, c) {-->
+        <#--(w[c] = w[c] || []).push(function () {-->
+            <#--try {-->
+                <#--w.yaCounter50640868 = new Ya.Metrika({-->
+                    <#--id: 50640868,-->
+                    <#--clickmap: true,-->
+                    <#--trackLinks: true,-->
+                    <#--accurateTrackBounce: true,-->
+                    <#--webvisor: true-->
+                <#--});-->
+            <#--} catch (e) {-->
+            <#--}-->
+        <#--});-->
 
-        var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () {
-                    n.parentNode.insertBefore(s, n);
-                };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
+        <#--var n = d.getElementsByTagName("script")[0],-->
+                <#--s = d.createElement("script"),-->
+                <#--f = function () {-->
+                    <#--n.parentNode.insertBefore(s, n);-->
+                <#--};-->
+        <#--s.type = "text/javascript";-->
+        <#--s.async = true;-->
+        <#--s.src = "https://mc.yandex.ru/metrika/watch.js";-->
 
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else {
-            f();
-        }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
+        <#--if (w.opera == "[object Opera]") {-->
+            <#--d.addEventListener("DOMContentLoaded", f, false);-->
+        <#--} else {-->
+            <#--f();-->
+        <#--}-->
+    <#--})(document, window, "yandex_metrika_callbacks");-->
+<#--</script>-->
 <noscript>
     <div><img src="https://mc.yandex.ru/watch/50640868" style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>

@@ -1,14 +1,16 @@
 package com.itis.app.scope;
 
 import com.itis.app.model.User;
-import lombok.Data;
+import com.itis.app.security.details.UserDetailsImpl;
+import org.springframework.security.core.Authentication;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 
-@SessionScope
-@Data
-@Component
 public class SessionBean {
-    private User user;
+
+    public User getUser(Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userDetails.getUser();
+        return user;
+    }
+
 }

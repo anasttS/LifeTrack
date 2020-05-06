@@ -68,7 +68,7 @@
     </div>
 </nav>
 
-
+<br>
 <section class="container">
     <div class="row">
         <div class="col-12 cabinet-pgin_and_registration justify-content-center" style="padding-left: 350px">
@@ -203,7 +203,9 @@
     }
 
 </script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 <script src="js/lp/waypoints.min.js"></script>
 <script src="js/lp/jquery.animateNumber.min.js"></script>
 <script src="js/lp/waypoints-sticky.min.js"></script>
@@ -215,7 +217,6 @@
 <script src="js/ava/ava.sender.js"></script>
 <script src="js/lib.cabinet.js"></script>
 <script src="js/lp/lp.js"></script>
-
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

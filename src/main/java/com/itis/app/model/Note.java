@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_note;
+    private Long id_note;
 
     private String name;
     private String text;
@@ -27,6 +27,6 @@ public class Note {
 
 //    // у одного пользователя много записей
 //    @ManyToOne(fetch = FetchType.EAGER)
-//    private Integer user_id;
+    private Long user_id;
 
 }

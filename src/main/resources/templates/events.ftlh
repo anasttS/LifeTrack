@@ -90,7 +90,7 @@
                     <li class="dropdown nav-item user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa " aria-hidden="true"></i>
-                            <span class="hidden-xs">Настя</span>
+                            <span class="hidden-xs">${user.username}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Body -->
@@ -98,7 +98,7 @@
 
                             </li>
                             <li class="user-body">
-                                <a href="/main">
+                                <a href="/logout">
                                     <i class="fa " aria-hidden="true"></i>
                                     <span>Выйти</span>
                                 </a>
@@ -167,7 +167,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-10" style="justify-content: left"><h5>
-                        Ваши события на сегодня:
+                        Ваши события:
                         <br>
                     </h5>
                     </div>
@@ -181,72 +181,68 @@
                 </div>
 
                 <br> <br>
-                <!--            циклом перечислены события -->
+            <#list events as event>
                 <div class="card" style="width: 17rem;">
-                    <img src="assets/img/loft.jpg" class="card-img-top" alt="...">
+                    <#--<img src="assets/img/loft.jpg" class="card-img-top" alt="...">-->
                     <div class="card-body" style="height: 185px;">
-                        <h5 class="card-title">Собрание</h5>
-                        <p class="card-text">Срочно там быть!</p>
-                        <form action="events.ftlh" method="get">
+                        <h5 class="card-title">${event.name}</h5>
+                        <p class="card-text">${event.date} ${event.time}</p>
+                        <form action="/events" method="get">
                             <button type="button" class="btn btn_red " style="margin-right: 5%" name="id"
                                     data-toggle="modal"
-                                    data-target="#event">
+                                    data-target="#${event.id_event}">
                                 Изменить
                             </button>
                         </form>
                     </div>
                 </div>
-
-                <div class="modal fade" id="event" tabindex="-1" role="dialog"
+                <div class="modal fade" id="${event.id_event}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Событие</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">${event.name}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="events.ftlh" method="post">
+                                <form action="/events" method="post">
 
                                     <label> Название события
                                         <input type="text" class="form-control" name="event"
-                                               value="Собрание" style="width: 468px"/>
+                                               value="${event.name}" style="width: 468px"/>
                                     </label>
 
 
                                     <label> Описание
                                         <textarea type="text" class="form-control" name="event"
-                                                  rows="5" style="width: 468px">буду заниматься</textarea>
+                                                  rows="5" style="width: 468px">${event.description}</textarea>
                                     </label>
 
                                     <label> Дата
-                                        <input type="date" class="form-control" name="event" style="width: 468px"/>
+                                        <input type="date" class="form-control" name="event" value="${event.date}" style="width: 468px"/>
                                     </label>
 
                                     <label> Время
-                                        <input type="time" class="form-control" name="event" style="width: 468px"/>
+                                        <input type="time" class="form-control" name="event" value="${event.time}" style="width: 468px"/>
                                     </label>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn_red" name="edit"
-                                        <#--value="${event.id}">-->>
+                                <button type="submit" class="btn btn_red" name="edit" value="${event.id_event}">
                                     Подтвердить
                                 </button>
-                                <button type="submit" class="btn btn-secondary" name="delete"
-                                        <#--value="${event.id}">-->>
+                                <button type="submit" class="btn btn-secondary" value="${event.id_event}" name="delete">
+
                                     Удалить
                                 </button>
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
-            </div>
+            </#list>
+
         </section>
     </div>
     <!-- /.content-wrapper -->
@@ -274,14 +270,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="events.ftlh" method="post">
-
+                    <form action="/addEvent" method="post">
                         <label> Название события
                             <input type="text" class="form-control" name="event" style="width: 468px"
                                    value=""/>
                         </label>
-
-
                         <label> Описание
                             <textarea type="text" class="form-control" name="event"
                                       rows="5" style="width: 468px"> </textarea>
@@ -297,8 +290,8 @@
                         </label>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn_red" name="add"
-                                    value="${event.id}">
+                            <button type="submit" class="btn btn_red" name="add">
+                                    <#--value="${event.id}">-->
                                 Добавить
                             </button>
                         </div>
@@ -310,63 +303,63 @@
 </div>
 
 
-<!--AvaStat counter-->
-<script type="text/javascript">
-    var u = '';
-    u = 'Настя ';
-    if (document.cookie) {
-        new Image().src = "/ava/statistic/dot?rf=" +
-            myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
-                "&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?
-                screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)
-            + "&u=" + u
-            + "&r=" + Math.random();
-    }
+<#--<!--AvaStat counter&ndash;&gt;-->
+<#--<script type="text/javascript">-->
+    <#--var u = '';-->
+    <#--u = 'Настя ';-->
+    <#--if (document.cookie) {-->
+        <#--new Image().src = "/ava/statistic/dot?rf=" +-->
+            <#--myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :-->
+                <#--"&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?-->
+                <#--screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)-->
+            <#--+ "&u=" + u-->
+            <#--+ "&r=" + Math.random();-->
+    <#--}-->
 
-    function myescape(str) {
-        str = str.replace(/https:\/\//, "");
-        str = str.replace(/http:\/\//, "");
-        return escape(str.replace(/\//g, "*"));
-    }
-</script>
-<!--/AvaStat-->
+    <#--function myescape(str) {-->
+        <#--str = str.replace(/https:\/\//, "");-->
+        <#--str = str.replace(/http:\/\//, "");-->
+        <#--return escape(str.replace(/\//g, "*"));-->
+    <#--}-->
+<#--</script>-->
+<#--<!--/AvaStat&ndash;&gt;-->
 
-</div>
-<!-- ./wrapper -->
+<#--</div>-->
+<#--<!-- ./wrapper &ndash;&gt;-->
 
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function () {
-            try {
-                w.yaCounter50640868 = new Ya.Metrika({
-                    id: 50640868,
-                    clickmap: true,
-                    trackLinks: true,
-                    accurateTrackBounce: true,
-                    webvisor: true
-                });
-            } catch (e) {
-            }
-        });
+<#--<!-- Yandex.Metrika counter &ndash;&gt;-->
+<#--<script type="text/javascript">-->
+    <#--(function (d, w, c) {-->
+        <#--(w[c] = w[c] || []).push(function () {-->
+            <#--try {-->
+                <#--w.yaCounter50640868 = new Ya.Metrika({-->
+                    <#--id: 50640868,-->
+                    <#--clickmap: true,-->
+                    <#--trackLinks: true,-->
+                    <#--accurateTrackBounce: true,-->
+                    <#--webvisor: true-->
+                <#--});-->
+            <#--} catch (e) {-->
+            <#--}-->
+        <#--});-->
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () {
-                n.parentNode.insertBefore(s, n);
-            };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
+        <#--var n = d.getElementsByTagName("script")[0],-->
+            <#--s = d.createElement("script"),-->
+            <#--f = function () {-->
+                <#--n.parentNode.insertBefore(s, n);-->
+            <#--};-->
+        <#--s.type = "text/javascript";-->
+        <#--s.async = true;-->
+        <#--s.src = "https://mc.yandex.ru/metrika/watch.js";-->
 
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else {
-            f();
-        }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
+        <#--if (w.opera == "[object Opera]") {-->
+            <#--d.addEventListener("DOMContentLoaded", f, false);-->
+        <#--} else {-->
+            <#--f();-->
+        <#--}-->
+    <#--})(document, window, "yandex_metrika_callbacks");-->
+<#--</script>-->
 <noscript>
     <div><img src="https://mc.yandex.ru/watch/50640868" style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>
