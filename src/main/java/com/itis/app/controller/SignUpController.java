@@ -16,7 +16,7 @@ public class SignUpController {
     @Autowired
     SignUpService signUpService;
 
-    @PreAuthorize("permitAll()")
+
     @GetMapping("/signUp")
     public ModelAndView getSignUpPage(Authentication authentication) {
         ModelAndView modelAndView = new ModelAndView();
@@ -27,7 +27,7 @@ public class SignUpController {
         }
         return modelAndView;
     }
-    @PreAuthorize("permitAll()")
+
     @PostMapping("/signUp")
     public ModelAndView signUp(SignUpDto form) {
         ModelAndView modelAndView = new ModelAndView();

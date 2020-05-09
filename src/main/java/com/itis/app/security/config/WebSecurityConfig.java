@@ -2,6 +2,7 @@ package com.itis.app.security.config;
 
 import com.itis.app.filters.CustomFilter;
 
+import com.itis.app.handler.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -23,11 +24,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private AuthenticationSuccessHandler authenticationSuccessHandler;
-//
-//    @Autowired
-//    private LogoutSuccessHandler logoutSuccessHandler;
+    @Autowired
+    LoginSuccessHandler authenticationSuccessHandler;
 
     @Autowired
     @Qualifier(value = "customUserDetailsService")
@@ -39,25 +37,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
-//        http.csrf().disable();
+        http.csrf().disable();
 
         http.addFilterAfter(new CustomFilter(), FilterSecurityInterceptor.class);
 
         http.authorizeRequests()
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/main").permitAll()
-                .antMatchers("/activate/**").permitAll();
+                .antMatchers("/activate/**").permitAll()
+                .antMatchers("/addEvent").authenticated();
 
         http.formLogin()
                 .loginPage("/signIn")
                 .usernameParameter("email")
                 .defaultSuccessUrl("/profile")
+                .successHandler(authenticationSuccessHandler)
                 .failureUrl("/signInError")
-                //.successHandler(authenticationSuccessHandler)
                 .permitAll();
 
+        http.rememberMe().tokenValiditySeconds(2592000).key("it's me").rememberMeParameter("checkRememberMe");
+
+
         http.logout()
-                //.logoutSuccessHandler(logoutSuccessHandler)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/signIn");
     }

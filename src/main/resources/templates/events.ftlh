@@ -143,12 +143,12 @@
                         <span>Записи</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/habits">
-                        <i class="fa " aria-hidden="true"></i>
-                        <span>Трекер привычек</span>
-                    </a>
-                </li>
+                <#--<li>-->
+                    <#--<a href="/habits">-->
+                        <#--<i class="fa " aria-hidden="true"></i>-->
+                        <#--<span>Трекер привычек</span>-->
+                    <#--</a>-->
+                <#--</li>-->
 
             </ul>
         </section>

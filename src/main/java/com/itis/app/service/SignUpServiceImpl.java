@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -34,7 +36,6 @@ public class SignUpServiceImpl implements SignUpService {
                 .hashPassword(passwordEncoder.encode(signUpDto.getPassword()))
                 .role(Role.USER)
                 .state(State.NOT_CONFIRMED)
-                .birthday(signUpDto.getBirthday())
                 .confirmCode(UUID.randomUUID().toString())
                 .build();
         userRepository.save(user);

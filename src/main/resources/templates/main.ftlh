@@ -44,7 +44,7 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/index">
+                <a class="navbar-brand" href="/main">
                     <!--                LifeTrack-->
                     <img class="logo-nav" alt="logo" src="assets/img/logo6.png" width="160px"
                          height="45px"/>

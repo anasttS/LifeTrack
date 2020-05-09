@@ -88,6 +88,11 @@
                                        onchange="checkEmail()"required>
                             </div>
                             <div class="form-group">
+                                <label>Имя *</label>
+                                <input type="text" class="form-control" placeholder="Ваше имя" name="username"
+                                       required>
+                            </div>
+                            <div class="form-group">
                                 <label>Пароль *</label>
                                 <input type="password" ONINPUT="checkPassword()" class="form-control"
                                        placeholder="Придумайте пароль"
@@ -100,17 +105,8 @@
                                        name="password2" id="password2" onchange="checkPasswords()" required>
                             </div>
 
-                            <div class="form-group">
-                                <label>Имя *</label>
-                                <input type="text" class="form-control" placeholder="Ваше имя" name="username"
-                                       required>
-                            </div>
 
-                            <div class="form-group">
-                                <label>Дата рождения *</label>
-                                <input type="date" class="form-control" placeholder="Ваш день рождения" name="birthday">
-                            </div>
-                            <input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                            <#--<input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
                             <div class="form-group">
                                 <div class="col-12" style="color: #000000; font-size: 16px">
                                     Пароль должен удовлетворять требованиям:

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <!--    <link href="css/bootstrap.min.css" rel="stylesheet"/>-->
-    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../resources/static/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="css/font_open_sans.css" rel="stylesheet"/>
     <link href="css/lp.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
@@ -99,22 +99,25 @@
                                     <input type="password" class="form-control" placeholder="Придумайте пароль"
                                            name="password" id="password" required>
                                 </div>
-                                <input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                <label>
-                                    <input type="checkbox" value="Remember">
-                                    Запомнить меня
-                                </label>
-                                <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="checkRememberMe" name="checkRememberMe">
+                                    <label class="form-check-label" for="checkRememberMe">Remember me?</label>
+                                </div>
+                                <#--<input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
+
+                                <div class="form-group" >
                                     <br>
                                     <button type="submit" class="btn">Войти</button>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="padding-left: 20%;">
 
                                     <h6> Еще не зарегистрированы? <a href="/signUp">Регистрация</a></h6>
                                 </div>
                             </form>
                         </div>
-                    <#--<a href="#" class="btn google btn-block" role="button">Войти с помощью Google</a>-->
+                        <a class="btn btn-block btn-social btn-google">
+                            <span class="fa fa-google"></span> Войти с помощью Google
+                        </a>
                     </div>
                     <div class="col-sm-1 hidden-sm hidden-xs">
                         <div class="_divider"></div>

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,17 +33,19 @@ public class SignInController {
 
     @GetMapping("/activate")
     @Scope("custom")
-    public String activate(Model model, @RequestParam("code") String code) {
-//        CustomBean customBean = new CustomBean();
+    public ModelAndView activate(@RequestParam("code") String code) {
+        ModelAndView modelAndView = new ModelAndView();
         bean.activate(code);
         boolean isActivated = confirmService.activateUser(code);
         if (isActivated) {
-            model.addAttribute("message", "User successfully activated");
+            modelAndView.addObject("message", "User successfully activated");
         } else {
-            model.addAttribute("message", "Activation code is not found!");
+            modelAndView.addObject("message", "Activation code is not found!");
         }
-        return "redirect:/signIn";
+        modelAndView.setViewName("/redirect:/signIn");
+        return modelAndView;
     }
+
 
     @GetMapping("/signInError")
     public ModelAndView getSignInPageWithErrors(Authentication authentication){

@@ -14,7 +14,7 @@ public class CustomScope implements Scope {
     public Object get(String name, ObjectFactory<?> objectFactory) {
         System.out.println("Code: " + name);
         scopedObjects.add(name);
-        return String.class;
+        return name.getClass();
     }
 
     @Override
@@ -22,6 +22,11 @@ public class CustomScope implements Scope {
         System.out.println("User with code " + name + "is deleted");
         scopedObjects.remove(name);
         return null;
+    }
+
+
+    public void count(){
+        System.out.println("Number of activated users = " + scopedObjects.size());
     }
 
     @Override
@@ -38,4 +43,7 @@ public class CustomScope implements Scope {
     public String getConversationId() {
         return "custom";
     }
+
+
+
 }

@@ -1,16 +1,19 @@
 package com.itis.app.scope;
 
 import com.itis.app.model.User;
-import com.itis.app.security.details.UserDetailsImpl;
-import org.springframework.security.core.Authentication;
+
 
 
 public class SessionBean {
+    private User user;
 
-    public User getUser(Authentication authentication) {
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        User user = userDetails.getUser();
+    public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        System.out.println("User is set");
+        this.user = user;
     }
 
 }

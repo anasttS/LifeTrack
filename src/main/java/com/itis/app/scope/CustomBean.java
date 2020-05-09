@@ -8,13 +8,6 @@ public class CustomBean {
 
     private CustomScope customScope = new CustomScope();
 
-    private ObjectFactory factory = new ObjectFactory() {
-        @Override
-        public Object getObject() throws BeansException {
-            return null;
-        }
-    };
-
     public void activate(String code){
         customScope.get(code, factory);
         System.out.println("User is activated");
@@ -25,4 +18,16 @@ public class CustomBean {
         System.out.println("User is deleted");
     }
 
+    public void countOfUsers(){
+        customScope.count();
+    }
+
+
+
+    private ObjectFactory factory = new ObjectFactory() {
+        @Override
+        public Object getObject() throws BeansException {
+            return null;
+        }
+    };
 }

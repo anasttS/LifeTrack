@@ -2,7 +2,7 @@
 <html lang="en" class="mdl-js">
 <head>
     <meta charset="UTF-8"/>
-    <title>Sign In</title>
+    <title>Admin</title>
 
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -46,6 +46,21 @@
             <td>${user.username}</td>
             <td>${user.email}</td>
             <td>${user.role}</td>
+
+            <#--<#if !(user.role == "ADMIN")>-->
+                <form method="get" action="/changeRole">
+                    <td>
+                        <button name="id" value="${user.id}">Change role</button>
+                    </td>
+                </form>
+
+            <form method="get" action="/delete">
+                <td>
+                    <button name="id" value="${user.id}">Delete</button>
+                </td>
+            </form>
+            <#--</#if>-->
+
         </tr>
     </#list>
     </table>
