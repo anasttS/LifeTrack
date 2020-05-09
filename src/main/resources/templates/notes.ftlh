@@ -31,17 +31,19 @@
     <link rel="stylesheet" href="css/jquery.simplecolorpicker.css?2">
     <link rel="stylesheet" href="css/bootstrap-datepicker.css?2">
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
+
 
     <script src="js/jquery-2.1.4.min.js"></script>
     <!--<script src="js/bootstrap.min.js"></script>-->
@@ -143,12 +145,12 @@
                         <span>Записи</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/habits">
-                        <i class="fa " aria-hidden="true"></i>
-                        <span>Трекер привычек</span>
-                    </a>
-                </li>
+                <#--<li>-->
+                    <#--<a href="/habits">-->
+                        <#--<i class="fa " aria-hidden="true"></i>-->
+                        <#--<span>Трекер привычек</span>-->
+                    <#--</a>-->
+                <#--</li>-->
 
             </ul>
         </section>
@@ -185,50 +187,82 @@
                 </div>
 
                 <br> <br>
-                <!--            циклом перечислены события -->
-                <div class="card" style="width: 17rem;">
-                    <img src="assets/img/loft.jpg" class="card-img-top" alt="...">
-                    <div class="card-body" style="height: 185px;">
-                        <h5 class="card-title">Лучший день!</h5>
-                        <p class="card-text">19.04.2000</p>
-                        <br>
-                        <form action="notes.ftlh" method="get">
-                            <button type="button" class="btn btn_red " style="margin-left: 50px" name="id"
-                                    data-toggle="modal"
-                                    data-target="#event">
-                                Посмотреть
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                 <#list notes as note>
+             <div class="card" style="width: 17rem;">
+                 <img src="files/${note.photo.storageFileName}" class="card-img-top" alt="...">
+                 <div class="card-body" style="height: 185px;">
+                     <h5 class="card-title">${note.name}</h5>
+                     <p class="card-text">${note.date}</p>
+                     <br>
+                     <form action="/notes" method="get">
+                         <button type="button" class="btn btn_red " style="margin-left: 50px" name="id"
+                                 data-toggle="modal"
+                                 data-target="#note${note.id_note}">
+                             Посмотреть
+                         </button>
+                     </form>
+                 </div>
+             </div>
 
-                <div class="modal fade" id="event" tabindex="-1" role="dialog"
+                <div class="modal fade" id="note${note.id_note}" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Лучший день!</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">${note.name}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img src="assets/img/loft.jpg" class="card-img-top" alt="...">
-                                <br>
+                                <div id="sliderBigImages${note.id_note}" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="files/${note.photo.storageFileName}" class="card-img-top"
+                                                 alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <video controls  width="450" height="300" preload="none">
+                                                <source src="files/${note.video.getStorageFileName()}" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#sliderBigImages${note.id_note}" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#sliderBigImages${note.id_note}" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
                                 <br>
                                 <label>
-                                <textarea style="width: 468px">
-    jdsnfkjnsljfnjhlsd
-</textarea>
+                                    <textarea style="width: 468px"> ${note.text} </textarea>
                                 </label>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                 </#list>
+                <!--            циклом перечислены события -->
+
             </div>
         </section>
     </div>
+    <script>
+        $(function () {
+            $('#carousel').carousel({
+                interval: 10000,
+                keyboard: false,
+                pause: 'hover',
+                ride: 'carousel',
+                wrap: false
+            });
+        });
+    </script>
     <!-- /.content-wrapper -->
     <br><br> <br>
     <!--site-footer-->
@@ -254,86 +288,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h6 style="text-decoration-color: grey; color: grey">
-                        Загрузите фото или видео, связанное с сегодняшним днем
-                    </h6>
-                    <input type="file" />
-
-                    <br><br>
-                    <h6 style="text-decoration-color: grey; color: grey">
-                        Расскажите, как прошел Ваш день
-                    </h6>
-                    <label>
-                        <textarea name="data" style="width: 468px"></textarea>
-                    </label>
+                    <form method="post" action="/addNote" enctype="multipart/form-data">
+                        <h6 style="text-decoration-color: grey; color: grey">
+                            Опишите день одной фразой
+                        </h6>
+                        <input name="name" type="text"/>
+                        <h6 style="text-decoration-color: grey; color: grey">
+                            Загрузите фото или видео, связанное с сегодняшним днем
+                        </h6>
+                        <input name="photo" placeholder="photo" type="file"/>
+                        <input name="video" placeholder="video" type="file"/>
+                        <br><br>
+                        <h6 style="text-decoration-color: grey; color: grey">
+                            Расскажите, как прошел Ваш день
+                        </h6>
+                        <label>
+                            <textarea name="text" style="width: 468px"></textarea>
+                        </label>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn_red" name="add">
+                                Добавить
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <!--AvaStat counter-->
-    <script type="text/javascript">
-        var u = '';
-        u = 'Настя ';
-        if (document.cookie) {
-            new Image().src = "/ava/statistic/dot?rf=" +
-                myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
-                    "&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?
-                    screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)
-                + "&u=" + u
-                + "&r=" + Math.random();
-        }
-
-        function myescape(str) {
-            str = str.replace(/https:\/\//, "");
-            str = str.replace(/http:\/\//, "");
-            return escape(str.replace(/\//g, "*"));
-        }
-    </script>
-    <!--/AvaStat-->
-
-</div>
-<!-- ./wrapper -->
-
-
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function () {
-            try {
-                w.yaCounter50640868 = new Ya.Metrika({
-                    id: 50640868,
-                    clickmap: true,
-                    trackLinks: true,
-                    accurateTrackBounce: true,
-                    webvisor: true
-                });
-            } catch (e) {
-            }
-        });
-
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () {
-                n.parentNode.insertBefore(s, n);
-            };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else {
-            f();
-        }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript>
-    <div><img src="https://mc.yandex.ru/watch/50640868" style="position:absolute; left:-9999px;" alt=""/></div>
-</noscript>
-<!-- /Yandex.Metrika counter -->
-
-
 </body>
 </html>
