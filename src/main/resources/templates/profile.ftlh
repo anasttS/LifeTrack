@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Profile</title>
-
+    <meta http-equiv="Refresh" content="10" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -205,16 +205,16 @@
             <div class="clearfix"></div>
             <!-- block activity graph -->
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="box box-success1" id="jsblock_activity_graph">
+                <div class="row">
                     <div class="box-header with-border1">
-                        <h3 class="box-title">Ваша активность — количество событий по месяцам</h3>
+                        <h3 class="box-title">Ваша активность — количество записей по месяцам</h3>
                     </div>
-                    <div class="box-body">
-                        <div class="chart">
-                            <canvas id="jscontainer_chart_activity" style="height:150px"></canvas>
-                        </div>
-                    </div>
-                    <div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
+                    <#--<div class="box-body">-->
+                        <#--<div class="chart">-->
+                            <img src="${img}" class="img-thumbnail2" alt="..." width="946px"
+                                 height="200px" >
+                        <#--</div>-->
+                    <#--</div>-->
                 </div>
             </div>
             <!-- /block activity graph -->

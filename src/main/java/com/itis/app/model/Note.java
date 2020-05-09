@@ -6,7 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -27,7 +28,7 @@ public class Note {
     @JoinColumn(name = "video")
     private FileData  video;
 
-    private Date date;
+    private String date;
 //    // у одного пользователя много записей
 //    @ManyToOne(fetch = FetchType.EAGER)
     private Long idu;

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +21,7 @@ public class NoteDto {
     private String text;
     private MultipartFile photo;
     private MultipartFile  video;
-    private Date date;
+    private String date;
     private Long idu;
 
 
