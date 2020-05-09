@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -19,13 +20,12 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_event;
+    private Long ide;
 
     private String name;
     private String description;
-    private String password;
     private Date date;
-    private Time time;
+    private LocalTime time;
 
 //    // у одного пользователя много событий
 //    @ManyToOne(fetch = FetchType.EAGER)

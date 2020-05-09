@@ -6,20 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class EventDto {
-    private Long id_event;
+    private Long ide;
     private String name;
     private String description;
     private Date date;
-    private Time time;
+    private LocalTime time;
     private Long idu;
 }

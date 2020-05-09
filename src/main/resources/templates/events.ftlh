@@ -172,11 +172,13 @@
                     </h5>
                     </div>
                     <div class="col-2" style="justify-content: right">
+                        <#--<a href="/addEvent" methods="post">-->
                         <button type="button" class="btn btn_red " style="margin-right: 5%" name="id"
                                 data-toggle="modal"
                                 data-target="#add">
                             Добавить
                         </button>
+                        <#--</a>-->
                     </div>
                 </div>
 
@@ -187,60 +189,14 @@
                     <div class="card-body" style="height: 185px;">
                         <h5 class="card-title">${event.name}</h5>
                         <p class="card-text">${event.date} ${event.time}</p>
-                        <form action="/events" method="get">
-                            <button type="button" class="btn btn_red " style="margin-right: 5%" name="id"
-                                    data-toggle="modal"
-                                    data-target="#${event.id_event}">
-                                Изменить
+                        <form action="/deleteEvent" method="get">
+                            <button class="btn btn-secondary" name="id" value="${event.ide}" >
+                                Удалить
                             </button>
                         </form>
                     </div>
                 </div>
-                <div class="modal fade" id="${event.id_event}" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">${event.name}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/events" method="post">
 
-                                    <label> Название события
-                                        <input type="text" class="form-control" name="event"
-                                               value="${event.name}" style="width: 468px"/>
-                                    </label>
-
-
-                                    <label> Описание
-                                        <textarea type="text" class="form-control" name="event"
-                                                  rows="5" style="width: 468px">${event.description}</textarea>
-                                    </label>
-
-                                    <label> Дата
-                                        <input type="date" class="form-control" name="event" value="${event.date}" style="width: 468px"/>
-                                    </label>
-
-                                    <label> Время
-                                        <input type="time" class="form-control" name="event" value="${event.time}" style="width: 468px"/>
-                                    </label>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn_red" name="edit" value="${event.id_event}">
-                                    Подтвердить
-                                </button>
-                                <button type="submit" class="btn btn-secondary" value="${event.id_event}" name="delete">
-
-                                    Удалить
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </#list>
 
         </section>
@@ -272,26 +228,24 @@
                 <div class="modal-body">
                     <form action="/addEvent" method="post">
                         <label> Название события
-                            <input type="text" class="form-control" name="event" style="width: 468px"
-                                   value=""/>
+                            <input type="text" class="form-control" name="name" id="name" style="width: 468px"/>
                         </label>
                         <label> Описание
-                            <textarea type="text" class="form-control" name="event"
+                            <textarea type="text" class="form-control" name="description" id="description"
                                       rows="5" style="width: 468px"> </textarea>
                         </label>
 
                         <label> Дата
-                            <input type="date" class="form-control" name="event"/>
+                            <input type="date" class="form-control" name="date" id="date"/>
                         </label>
 
 
                         <label> Время
-                            <input type="time" class="form-control" name="event" style="width: 468px"/>
+                            <input type="time" class="form-control" name="time" id="time" style="width: 468px"/>
                         </label>
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn_red" name="add">
-                                    <#--value="${event.id}">-->
                                 Добавить
                             </button>
                         </div>
