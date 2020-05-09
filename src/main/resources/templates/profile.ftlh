@@ -43,6 +43,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <style>
+        .round {
+        border-radius: 100px; /* Радиус скругления */
+        border: 1px solid whitesmoke; /* Параметры рамки */
+        box-shadow: 0 0 2px #666; /* Параметры тени */
+    }</style>
 
 
 </head>
@@ -74,13 +80,9 @@
                             <span class="hidden-xs">${user.username}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- Menu Body -->
-                            <li class="user-body">
 
-                            </li>
                             <li class="user-body">
                                 <a href="/logout">
-                                    <i class="fa " aria-hidden="true"></i>
                                     <span>Выйти</span>
                                 </a>
                             </li>
@@ -126,12 +128,12 @@
                         <span>Записи</span>
                     </a>
                 </li>
-                <li>
-                    <a href="/habits">
-                        <i class="fa " aria-hidden="true"></i>
-                        <span>Трекер привычек</span>
-                    </a>
-                </li>
+                <#--<li>-->
+                    <#--<a href="/habits">-->
+                        <#--<i class="fa " aria-hidden="true"></i>-->
+                        <#--<span>Трекер привычек</span>-->
+                    <#--</a>-->
+                <#--</li>-->
 
 
             </ul>
@@ -144,54 +146,56 @@
     <div class="content-wrapper">
 
         <section class="content">
-            <h1>Доброе день, ${user.username} </h1>
+            <h1>Здравствуйте, ${user.username} </h1>
 
             <!-- Main content -->
             <div class="container">
                 <div class="row">
-                    <#--<div class="col-5">-->
-                        <#--<div class="row-2">-->
-                            <#--<img src="assets/img/desk.jpg" class="img-thumbnail2 justify-content-center" alt="..."-->
-                                 <#--width="280px"-->
-                                 <#--height="280px">-->
-                            <#--<p></p>-->
-                            <#--&lt;#&ndash;<input type="file" class="btn cta-btn" id="preview" name="fileP">&ndash;&gt;-->
-                        <#--</div>-->
-                    <#--</div>-->
+                    <div class="col-5">
+                        <div class="row-2">
+                            <form method="post" action="/updateProfile" name="updateProfile"
+                                  enctype="multipart/form-data">
+                        <#if user.img?has_content>
+    <img src="files/${user.img.storageFileName}" class="img-thumbnail2 round" alt="..."
+         width="300px"
+         height="300px">
+    <p></p>
+                        </#if>
+
+                            <#if !(user.img?has_content)>
+    <div class="row" id="media">
+        <input name="img" placeholder="photo" type="file"/>
+    </div>
+                            </#if>
+
+
+                        </div>
+                    </div>
                     <div class="col-7">
                         <div class="row-10">
+                            <br> <br>
+                            <div class="form-group">
+                                <label for="inputUsername"></label>
+                                <input type="text" class="form-control" id="inputUsername"
+                                       placeholder="Enter username"
+                                       name="username" value="${user.username}">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail"></label>
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Enter email"
+                                       name="email" value="${user.email}">
+                            </div>
+                            <br> <br>
 
-                            <#--<@spring.bind "profileForm"/>-->
-                            <form method="post" action="/profile">
-                                <div class="form-group">
-                                    <label for="inputUsername"></label>
-                                    <input type="text" class="form-control" id="inputUsername"
-                                           placeholder="Enter username"
-                                           name="username" value="${user.username}">
-                                     <#--<@spring.formInput "profileForm.username"/>-->
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail"></label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter email"
-                                           name="email" value="${user.email}">
-                                     <#--<@spring.formInput "profileForm.email"/>-->
-                                </div>
-                                <div class="form-group">
-                                    <label for="example-date-input"></label>
-                                    <input class="form-control" type="date" id="example-date-input" name="birthday"
-                                           value="${user.birthday}">
-                                     <#--<@spring.formInput "profileForm.birthday"/>-->
-                                </div>
-
-                                <br>
-                                <button type="submit" class="btn btn_red" name="save">Save Changes</button>
+                            <br>
+                            <button type="submit" class="btn btn_red" name="save">Save Changes</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <#--<p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>-->
-<br><br>
+        <#--<p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>-->
+            <br><br>
             <div class="raw justify-content-start">
 
                 <p>
@@ -276,26 +280,26 @@
     </div>
 
 
-    <#--<!--AvaStat counter&ndash;&gt;-->
-    <#--<script type="text/javascript">-->
-        <#--var u = '';-->
-        <#--u = 'Настя ';-->
-        <#--if (document.cookie) {-->
-            <#--new Image().src = "/ava/statistic/dot?rf=" +-->
-                    <#--myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :-->
-                            <#--"&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?-->
-                            <#--screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)-->
-                    <#--+ "&u=" + u-->
-                    <#--+ "&r=" + Math.random();-->
-        <#--}-->
+<#--<!--AvaStat counter&ndash;&gt;-->
+<#--<script type="text/javascript">-->
+<#--var u = '';-->
+<#--u = 'Настя ';-->
+<#--if (document.cookie) {-->
+<#--new Image().src = "/ava/statistic/dot?rf=" +-->
+<#--myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :-->
+<#--"&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?-->
+<#--screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)-->
+<#--+ "&u=" + u-->
+<#--+ "&r=" + Math.random();-->
+<#--}-->
 
-        <#--function myescape(str) {-->
-            <#--str = str.replace(/https:\/\//, "");-->
-            <#--str = str.replace(/http:\/\//, "");-->
-            <#--return escape(str.replace(/\//g, "*"));-->
-        <#--}-->
-    <#--</script>-->
-    <#--<!--/AvaStat&ndash;&gt;-->
+<#--function myescape(str) {-->
+<#--str = str.replace(/https:\/\//, "");-->
+<#--str = str.replace(/http:\/\//, "");-->
+<#--return escape(str.replace(/\//g, "*"));-->
+<#--}-->
+<#--</script>-->
+<#--<!--/AvaStat&ndash;&gt;-->
 
 
 </div>
@@ -324,35 +328,35 @@
 
 <#--<!-- Yandex.Metrika counter &ndash;&gt;-->
 <#--<script type="text/javascript">-->
-    <#--(function (d, w, c) {-->
-        <#--(w[c] = w[c] || []).push(function () {-->
-            <#--try {-->
-                <#--w.yaCounter50640868 = new Ya.Metrika({-->
-                    <#--id: 50640868,-->
-                    <#--clickmap: true,-->
-                    <#--trackLinks: true,-->
-                    <#--accurateTrackBounce: true,-->
-                    <#--webvisor: true-->
-                <#--});-->
-            <#--} catch (e) {-->
-            <#--}-->
-        <#--});-->
+<#--(function (d, w, c) {-->
+<#--(w[c] = w[c] || []).push(function () {-->
+<#--try {-->
+<#--w.yaCounter50640868 = new Ya.Metrika({-->
+<#--id: 50640868,-->
+<#--clickmap: true,-->
+<#--trackLinks: true,-->
+<#--accurateTrackBounce: true,-->
+<#--webvisor: true-->
+<#--});-->
+<#--} catch (e) {-->
+<#--}-->
+<#--});-->
 
-        <#--var n = d.getElementsByTagName("script")[0],-->
-                <#--s = d.createElement("script"),-->
-                <#--f = function () {-->
-                    <#--n.parentNode.insertBefore(s, n);-->
-                <#--};-->
-        <#--s.type = "text/javascript";-->
-        <#--s.async = true;-->
-        <#--s.src = "https://mc.yandex.ru/metrika/watch.js";-->
+<#--var n = d.getElementsByTagName("script")[0],-->
+<#--s = d.createElement("script"),-->
+<#--f = function () {-->
+<#--n.parentNode.insertBefore(s, n);-->
+<#--};-->
+<#--s.type = "text/javascript";-->
+<#--s.async = true;-->
+<#--s.src = "https://mc.yandex.ru/metrika/watch.js";-->
 
-        <#--if (w.opera == "[object Opera]") {-->
-            <#--d.addEventListener("DOMContentLoaded", f, false);-->
-        <#--} else {-->
-            <#--f();-->
-        <#--}-->
-    <#--})(document, window, "yandex_metrika_callbacks");-->
+<#--if (w.opera == "[object Opera]") {-->
+<#--d.addEventListener("DOMContentLoaded", f, false);-->
+<#--} else {-->
+<#--f();-->
+<#--}-->
+<#--})(document, window, "yandex_metrika_callbacks");-->
 <#--</script>-->
 <noscript>
     <div><img src="https://mc.yandex.ru/watch/50640868" style="position:absolute; left:-9999px;" alt=""/></div>

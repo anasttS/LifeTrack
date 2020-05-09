@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 
 
@@ -26,7 +25,10 @@ public class User {
     private String email;
 
     private String hashPassword;
-    private Date birthday;
+    private LocalDate birthday;
+    @OneToOne
+    @JoinColumn(name = "img")
+    private FileData img;
 
     @Enumerated(EnumType.STRING)
     private Role role;

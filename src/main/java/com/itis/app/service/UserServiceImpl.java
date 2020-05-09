@@ -1,6 +1,7 @@
 package com.itis.app.service;
 
 import com.itis.app.dto.UserDto;
+import com.itis.app.model.Role;
 import com.itis.app.model.User;
 import com.itis.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,17 @@ public class UserServiceImpl implements UserService {
         return code;
     }
 
-
+    @Override
+    public void changeRole(Long id) {
+        Optional<User> user = userRepository.findUserById(id);
+        if (user.isPresent()) {
+            User user1 = user.get();
+            if (user1.getRole().toString().equals("ADMIN")){
+                user1.setRole(Role.USER);
+            } else {
+                user1.setRole(Role.ADMIN);
+            }
+            userRepository.save(user1);
+        }
+    }
 }

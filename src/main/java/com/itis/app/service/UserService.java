@@ -10,4 +10,5 @@ public interface UserService {
     List<UserDto> getAllUsers();
     void delete(Long id);
     String getCodeFromUserByUserId(Long id);
+    void changeRole(Long id);
 }
