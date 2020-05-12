@@ -21,17 +21,19 @@ public class Note {
 
     private String name;
     private String text;
-    @OneToOne
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "photo")
     private FileData photo;
-    @OneToOne
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "video")
     private FileData  video;
 
     private String date;
-//    // у одного пользователя много записей
-//    @ManyToOne(fetch = FetchType.EAGER)
-    private Long idu;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

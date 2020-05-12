@@ -30,7 +30,7 @@ public class AnalyseDataServiceImpl implements AnalyseDataService {
         String date;
         User user = sessionBean.getUser();
       //  System.out.println(user.toString());
-        ArrayList<Dataset> datasets = datasetRepository.findAllByIdu(user.getId());
+        ArrayList<Dataset> datasets = datasetRepository.findAllByUser(user);
         ArrayList<Float> percents = new ArrayList<>();
         for (int month = 1; month <= 12; month++) {
             YearMonth yearMonthObject = YearMonth.of(year, month);
@@ -40,7 +40,7 @@ public class AnalyseDataServiceImpl implements AnalyseDataService {
             } else {
                 date = year + "-" + month + "-";
             }
-            Integer notesInMonthFromUser = (noteRepository.findByIduAndDateContains(user.getId(), date)).size();
+            Integer notesInMonthFromUser = (noteRepository.findByUserAndDateContains(user, date)).size();
 
             Float percent = Float.valueOf((notesInMonthFromUser * 100) / daysInMonth);
             percents.add(percent);
@@ -59,7 +59,7 @@ public class AnalyseDataServiceImpl implements AnalyseDataService {
                 }
                 dataset.setYear(Integer.toString(year));
                 dataset.setPercent(percents.get(monthth - 1));
-                dataset.setIdu(user.getId());
+                dataset.setUser(user);
                 datasetRepository.save(dataset);
             }
         } else {
@@ -69,7 +69,7 @@ public class AnalyseDataServiceImpl implements AnalyseDataService {
                             .month("0" + month)
                             .year(Integer.toString(year))
                             .percent(percents.get(month - 1))
-                            .idu(user.getId())
+                            .user(user)
                             .build();
                     datasetRepository.save(data);
                 } else {
@@ -77,7 +77,7 @@ public class AnalyseDataServiceImpl implements AnalyseDataService {
                             .month(Integer.toString(month))
                             .year(Integer.toString(year))
                             .percent(percents.get(month - 1))
-                            .idu(user.getId())
+                            .user(user)
                             .build();
                     datasetRepository.save(data);
                 }

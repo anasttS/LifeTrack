@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -22,5 +19,8 @@ public class Dataset {
     private String month;
     private String year;
     private float percent;
-    private Long idu;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -3,6 +3,7 @@ package com.itis.app.service;
 import com.itis.app.dto.NoteDto;
 import com.itis.app.model.Note;
 import com.itis.app.repository.NoteRepository;
+import com.itis.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ import java.util.Date;
 @Service
 public class NoteServiceImpl implements NoteService {
 
-
+@Autowired
+UserService userService;
     @Autowired
     private FileStorageService fileStorageService;
 
@@ -33,7 +35,7 @@ public class NoteServiceImpl implements NoteService {
                 .photo(fileStorageService.saveFile(form.getPhoto()))
                 .video(fileStorageService.saveFile(form.getVideo()))
                 .date(LocalDate.now().toString())
-                .idu(id)
+                .user(userService.findUserById(id))
                 .build();
         noteRepository.save(note);
     }
@@ -41,7 +43,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public ArrayList<Note> getNotesByUser_id(Long id) {
-        return noteRepository.findAllByIduOrderByDate(id);
+        return noteRepository.findAllByUserOrderByDate(userService.findUserById(id));
     }
 
     @Override
@@ -76,7 +78,7 @@ public class NoteServiceImpl implements NoteService {
             }
         }
 
-        return noteRepository.findByIduAndDateContains(id, date);
+        return noteRepository.findByUserAndDateContains(userService.findUserById(id), date);
     }
 
     @Override
@@ -95,7 +97,7 @@ public class NoteServiceImpl implements NoteService {
         yearPred = (Integer.parseInt(year) - 1);
         date = yearPred + "-" + month + "-" + day;
 
-        return noteRepository.findByIduAndDateContains(id, date);
+        return noteRepository.findByUserAndDateContains(userService.findUserById(id), date);
     }
 
 }

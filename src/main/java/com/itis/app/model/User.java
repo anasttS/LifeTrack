@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Data
@@ -26,6 +27,7 @@ public class User {
 
     private String hashPassword;
     private LocalDate birthday;
+
     @OneToOne
     @JoinColumn(name = "img")
     private FileData img;
@@ -36,6 +38,15 @@ public class User {
     @Enumerated(EnumType.STRING)
     private State state;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Note> notes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Event> events;
+
+    @OneToOne
+    @JoinColumn(name = "dataset")
+    private Dataset dataset;
 
     private  String confirmCode;
 }

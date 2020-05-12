@@ -16,6 +16,9 @@ public class EventsServiceImpl implements EventsService {
     @Autowired
     EventRepository eventRepository;
 
+    @Autowired
+    UserService userService;
+
     @Override
     public void addEvent(EventDto form, Long idu) {
         Event event = Event.builder()
@@ -23,7 +26,7 @@ public class EventsServiceImpl implements EventsService {
                 .description(form.getDescription())
                 .date(form.getDate())
                 .time(form.getTime())
-                .idu(idu)
+                .user(userService.findUserById(idu))
                 .build();
         eventRepository.save(event);
     }
@@ -41,6 +44,7 @@ public class EventsServiceImpl implements EventsService {
 
     @Override
     public ArrayList<Event> getEventsByUser_id(Long id) {
-        return eventRepository.findAllByIduOrderByDate(id);
+        return eventRepository.findAllByUserOrderByDate(userService.findUserById(id));
     }
+
 }

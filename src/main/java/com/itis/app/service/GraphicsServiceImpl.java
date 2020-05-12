@@ -1,5 +1,6 @@
 package com.itis.app.service;
 
+import com.itis.app.aspects.LogExecutionTime;
 import com.itis.app.model.Dataset;
 import com.itis.app.repository.DatasetRepository;
 import com.itis.app.scope.SessionBean;
@@ -52,7 +53,7 @@ public class GraphicsServiceImpl implements GraphicsService {
     private CategoryDataset createDataset() {
         createData();
         ArrayList<Float> percents = new ArrayList<>();
-        ArrayList<Dataset> datasets = datasetRepository.getAllByIduAndYear(sessionBean.getUser().getId(), Integer.toString(getCurrentYear()));
+        ArrayList<Dataset> datasets = datasetRepository.getAllByUserAndYear(sessionBean.getUser(), Integer.toString(getCurrentYear()));
 
         for (Dataset dataset : datasets) {
             percents.add(dataset.getPercent());
@@ -94,9 +95,10 @@ public class GraphicsServiceImpl implements GraphicsService {
 
     @Override
     @SneakyThrows
+    @LogExecutionTime
     public void saveChart(Long id) {
         String filename = "C:\\ITIS.JAVA\\LifeTrack\\src\\main\\resources\\static\\assets\\img";
-        System.out.println(filename);
+//        System.out.println(filename);
         filename = filename + "\\charts\\chart" + id + ".png";
         ChartUtilities.saveChartAsPNG(new File(filename), createChart(), 1000, 200);
     }

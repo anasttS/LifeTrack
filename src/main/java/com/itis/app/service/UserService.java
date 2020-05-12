@@ -11,4 +11,5 @@ public interface UserService {
     void delete(Long id);
     String getCodeFromUserByUserId(Long id);
     void changeRole(Long id);
+    User findUserById(Long id);
 }

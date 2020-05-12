@@ -27,8 +27,8 @@ public class Event {
     private Date date;
     private LocalTime time;
 
-//    // у одного пользователя много событий
-//    @ManyToOne(fetch = FetchType.EAGER)
-    private Long idu;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

@@ -17,9 +17,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findUserByEmail(String email);
     Optional<User> findByConfirmCode(String confirmCode);
     Optional<User> findUserById(Long id);
-
-//    @Modifying
-//    @Query("update User u set u.username = :username, u.img = :img, u.email = :email where u.id = :id")
-//    int updateUser(@Param("username") String username, @Param("img") FileData img,
-//                   @Param("email") String email, @Param("id") Long id);
 }
