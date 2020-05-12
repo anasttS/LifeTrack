@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Profile</title>
-    <meta http-equiv="Refresh" content="10" />
 
+    <meta http-equiv="Refresh" content="20"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -45,10 +45,10 @@
             crossorigin="anonymous"></script>
     <style>
         .round {
-        border-radius: 100px; /* Радиус скругления */
-        border: 1px solid whitesmoke; /* Параметры рамки */
-        box-shadow: 0 0 2px #666; /* Параметры тени */
-    }</style>
+            border-radius: 100px; /* Радиус скругления */
+            border: 1px solid whitesmoke; /* Параметры рамки */
+            box-shadow: 0 0 2px #666; /* Параметры тени */
+        }</style>
 
 
 </head>
@@ -94,16 +94,14 @@
     </div>
 </header>
 <!-- Site wrapper -->
-<div class="wrapper">
+<div class="wrapper" style="margin: 0">
     <!-- =============================================== -->
 
     <!-- Left side column. contains the sidebar -->
-    <aside class="main-sidebar">
+    <aside class="main-sidebar" style="margin: 0; background-color: whitesmoke">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-
-
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
 
@@ -128,12 +126,12 @@
                         <span>Записи</span>
                     </a>
                 </li>
-                <#--<li>-->
-                    <#--<a href="/habits">-->
-                        <#--<i class="fa " aria-hidden="true"></i>-->
-                        <#--<span>Трекер привычек</span>-->
-                    <#--</a>-->
-                <#--</li>-->
+            <#--<li>-->
+            <#--<a href="/habits">-->
+            <#--<i class="fa " aria-hidden="true"></i>-->
+            <#--<span>Трекер привычек</span>-->
+            <#--</a>-->
+            <#--</li>-->
 
 
             </ul>
@@ -163,6 +161,9 @@
                         </#if>
 
                             <#if !(user.img?has_content)>
+                                <img src="assets/img/images.png" class="img-thumbnail2 round" alt="..."
+                                     width="300px"
+                                     height="300px">
     <div class="row" id="media">
         <input name="img" placeholder="photo" type="file"/>
     </div>
@@ -194,7 +195,7 @@
                     </div>
                 </div>
             </div>
-        <#--<p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>-->
+<#--<p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>-->
             <br><br>
             <div class="raw justify-content-start">
 
@@ -202,42 +203,164 @@
                 <h1> Немного информации о Вас </h1></p>
             </div>
 
-            <div class="clearfix"></div>
             <!-- block activity graph -->
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="row">
                     <div class="box-header with-border1">
                         <h3 class="box-title">Ваша активность — количество записей по месяцам</h3>
                     </div>
-                    <#--<div class="box-body">-->
-                        <#--<div class="chart">-->
-                            <img src="${img}" class="img-thumbnail2" alt="..." width="946px"
-                                 height="200px" >
-                        <#--</div>-->
-                    <#--</div>-->
+                <#--<div class="box-body">-->
+                <#--<div class="chart">-->
+                    <img src="${img}" class="img-thumbnail2" alt="..." width="946px"
+                         height="200px">
+                <#--</div>-->
+                <#--</div>-->
                 </div>
             </div>
             <!-- /block activity graph -->
 
-            <div class="clearfix"></div>
 
-            <p>
-            <h1> Воспоминания </h1></p>
-            <br>
-            <div class="card" style="width: 17rem;">
-                <img src="assets/img/loft.jpg" class="card-img-top" alt="...">
-                <div class="card-body" style="height: 185px;">
-                    <h5 class="card-title">Месяц назад</h5>
-                    <p class="card-text">Лучший день!</p>
-                    <form action="/event" method="get">
-                        <button type="button" class="btn btn_red " style="margin-right: 5%" name="id"
-                                data-toggle="modal"
-                                data-target="#event">
-                            Подробнее
-                        </button>
-                    </form>
-                </div>
-            </div>
+            <h1> Воспоминания </h1>
+<#if message?exists>
+              <h1 style="color:grey;">${message} </h1>
+</#if>
+
+<#if notesMonthAgo?exists>
+    <#list notesMonthAgo as note>
+     <h1 style="color: grey"> Месяц назад </h1>
+                     <div class="card" style="width: 17rem;">
+                         <img src="files/${note.photo.storageFileName}" class="card-img-top" alt="...">
+                         <div class="card-body" style="height: 185px;">
+                             <h5 class="card-title">${note.name}</h5>
+                             <p class="card-text">${note.date}</p>
+                             <br>
+                             <form action="/notes" method="get">
+                                 <button type="button" class="btn btn_red " style="margin-left: 50px" name="id"
+                                         data-toggle="modal"
+                                         data-target="#note${note.id_note}">
+                                     Посмотреть
+                                 </button>
+                             </form>
+                         </div>
+                     </div>
+
+                     <div class="modal fade" id="note${note.id_note}" tabindex="-1" role="dialog"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title" id="exampleModalLabel">${note.name}</h5>
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <div id="sliderBigImages${note.id_note}" class="carousel slide"
+                                          data-ride="carousel">
+                                         <div class="carousel-inner">
+                                             <div class="carousel-item active">
+                                                 <img src="files/${note.photo.storageFileName}" class="card-img-top"
+                                                      alt="...">
+                                             </div>
+                                             <div class="carousel-item">
+                                                 <video controls width="450" height="300" preload="none">
+                                                     <source src="files/${note.video.getStorageFileName()}"
+                                                             type="video/mp4">
+                                                 </video>
+                                             </div>
+                                         </div>
+                                         <a class="carousel-control-prev" href="#sliderBigImages${note.id_note}"
+                                            role="button" data-slide="prev">
+                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Previous</span>
+                                         </a>
+                                         <a class="carousel-control-next" href="#sliderBigImages${note.id_note}"
+                                            role="button" data-slide="next">
+                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Next</span>
+                                         </a>
+                                     </div>
+                                     <br>
+                                     <label>
+                                         <textarea style="width: 468px"> ${note.text} </textarea>
+                                     </label>
+
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+    </#list>
+</#if>
+
+            <#if messageYear?exists>
+              <h1 style="color:grey;">${messageYear} </h1>
+            </#if>
+            <#if notesYearAgo?exists>
+                <#list notesYearAgo as note>
+     <h1 style="color: grey"> Год назад </h1>
+                     <div class="card" style="width: 17rem;">
+                         <img src="files/${note.photo.storageFileName}" class="card-img-top" alt="...">
+                         <div class="card-body" style="height: 185px;">
+                             <h5 class="card-title">${note.name}</h5>
+                             <p class="card-text">${note.date}</p>
+                             <br>
+                             <form action="/notes" method="get">
+                                 <button type="button" class="btn btn_red " style="margin-left: 50px" name="id"
+                                         data-toggle="modal"
+                                         data-target="#note${note.id_note}">
+                                     Посмотреть
+                                 </button>
+                             </form>
+                         </div>
+                     </div>
+
+                     <div class="modal fade" id="note${note.id_note}" tabindex="-1" role="dialog"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title" id="exampleModalLabel">${note.name}</h5>
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <div id="sliderBigImages${note.id_note}" class="carousel slide"
+                                          data-ride="carousel">
+                                         <div class="carousel-inner">
+                                             <div class="carousel-item active">
+                                                 <img src="files/${note.photo.storageFileName}" class="card-img-top"
+                                                      alt="...">
+                                             </div>
+                                             <div class="carousel-item">
+                                                 <video controls width="450" height="300" preload="none">
+                                                     <source src="files/${note.video.getStorageFileName()}"
+                                                             type="video/mp4">
+                                                 </video>
+                                             </div>
+                                         </div>
+                                         <a class="carousel-control-prev" href="#sliderBigImages${note.id_note}"
+                                            role="button" data-slide="prev">
+                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Previous</span>
+                                         </a>
+                                         <a class="carousel-control-next" href="#sliderBigImages${note.id_note}"
+                                            role="button" data-slide="next">
+                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Next</span>
+                                         </a>
+                                     </div>
+                                     <br>
+                                     <label>
+                                         <textarea style="width: 468px"> ${note.text} </textarea>
+                                     </label>
+
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                </#list>
+            </#if>
 
         </section>
     </div>
@@ -248,7 +371,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <small>&copy; 2020 Lifetrack</small>
+                    <small>&copy; 2020 Lifetrack - <a href="/support">Служба поддержки</a></small>
                 </div>
             </div>
         </div>

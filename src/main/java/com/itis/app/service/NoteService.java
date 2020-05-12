@@ -8,4 +8,6 @@ import java.util.ArrayList;
 public interface NoteService {
     void addNote(NoteDto form, Long id);
     ArrayList<Note> getNotesByUser_id(Long id);
+    ArrayList<Note> getNotesByUser_idMonthAgo(Long id);
+    ArrayList<Note> getNotesByUser_idYearAgo(Long id);
 }

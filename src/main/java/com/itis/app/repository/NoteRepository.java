@@ -11,10 +11,6 @@ import java.util.ArrayList;
 
 public interface NoteRepository extends JpaRepository<Note, Integer> {
     ArrayList<Note> findAllByIduOrderByDate(Long id);
-
-//    @Query(value = "SELECT n from note n where n.date like :date")
     ArrayList<Note> findByIduAndDateContains(Long id, String date);
 
-
-//    Integer countAllByDateIsContaining(String date);
 }
