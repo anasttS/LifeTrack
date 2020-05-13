@@ -12,4 +12,5 @@ public interface UserService {
     String getCodeFromUserByUserId(Long id);
     void changeRole(Long id);
     User findUserById(Long id);
+    User getUserByEmail(String email);
 }

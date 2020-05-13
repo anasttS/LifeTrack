@@ -27,6 +27,9 @@ public class SignUpServiceImpl implements SignUpService {
     @Autowired
     EmailService emailService;
 
+    @Autowired
+    UserService userService;
+
 
     @Override
     public void signUp(SignUpDto signUpDto) {
@@ -50,6 +53,23 @@ public class SignUpServiceImpl implements SignUpService {
                 .build();
 
         emailService.sendMail(mailMessage);
+
+    }
+
+    @Override
+    public User signUpDiscord(SignUpDto signUpDto) {
+
+        User user = User.builder()
+                .email(signUpDto.getEmail())
+                .username(signUpDto.getUsername())
+                .hashPassword(UUID.randomUUID().toString())
+                .role(Role.USER)
+                .state(State.CONFIRMED)
+                .build();
+
+        userRepository.save(user);
+
+        return userService.getUserByEmail(signUpDto.getEmail());
 
     }
 }

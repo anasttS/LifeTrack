@@ -81,11 +81,12 @@
                     <div class="col-sm-7">
                         <h1>Вход</h1>
                         <div class="">
-                        ${message?ifExists}
+
                             <form method="post" action="/signIn">
                                 <input type="hidden" name="type" value="0">
                                 <div class="col-sm-12">
                                     <div class="_error_messages">
+                                    ${message?ifExists}
                                     ${error?ifExists}
                                     </div>
                                 </div>
@@ -115,8 +116,8 @@
                                 </div>
                             </form>
                         </div>
-                        <a class="btn btn-block btn-social btn-google">
-                            <span class="fa fa-google"></span> Войти с помощью Google
+                        <a class="btn btn-block btn-social btn-discord" href="https://discord.com/api/oauth2/authorize?client_id=710111299459088434&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FsignInDiscord&response_type=code&scope=identify%20email%20connections%20guilds">
+                            <span class="fa fa-discord"></span> Войти с помощью Discord
                         </a>
                     </div>
                     <div class="col-sm-1 hidden-sm hidden-xs">

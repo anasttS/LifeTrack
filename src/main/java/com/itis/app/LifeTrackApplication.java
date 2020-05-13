@@ -1,6 +1,8 @@
 package com.itis.app;
 
-import com.itis.app.scope.customScope.CustomBeanFactoryPostProcessor;
+//import com.itis.app.scope.customScope.CustomBeanFactoryPostProcessor;
+import bell.oauth.discord.main.OAuthBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,8 +18,16 @@ import org.springframework.web.context.annotation.ApplicationScope;
 public class LifeTrackApplication {
 
     @Bean
-    public static BeanFactoryPostProcessor beanFactoryPostProcessor() {
-        return new CustomBeanFactoryPostProcessor();
+    public OAuthBuilder oAuthBuilder() {
+        OAuthBuilder builder = new OAuthBuilder("710111299459088434", "KLapPRYpmTaaj1b58C1UGVQYMv0VvJtG")
+                .setScopes(new String[]{"connections", "guilds", "email"})
+                .setRedirectURI("http://localhost:8080/signInDiscord");
+        return builder;
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
     @Bean
