@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class SignUpController {
@@ -29,10 +32,17 @@ public class SignUpController {
     }
 
     @PostMapping("/signUp")
-    public ModelAndView signUp(SignUpDto form) {
+    public ModelAndView signUp(@Valid SignUpDto form,  BindingResult bindingResult) {
+        System.out.println(bindingResult.getAllErrors());
         ModelAndView modelAndView = new ModelAndView();
-        signUpService.signUp(form);
-        modelAndView.setViewName("redirect:/signIn");
+        if(!bindingResult.hasErrors()){
+            signUpService.signUp(form);
+            modelAndView.setViewName("redirect:/signIn");
+        }
+        else{
+           modelAndView.setViewName("signUp");
+        }
+
         return modelAndView;
     }
 
