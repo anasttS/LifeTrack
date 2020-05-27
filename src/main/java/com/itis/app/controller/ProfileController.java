@@ -8,6 +8,7 @@ import com.itis.app.service.GraphicsService;
 import com.itis.app.service.NoteService;
 import com.itis.app.service.UpdateProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +22,11 @@ import java.util.ArrayList;
 
 @Controller
 @PreAuthorize("isAuthenticated()")
+@Scope("pages")
 public class ProfileController {
 
     @Autowired
     UpdateProfileService updateProfileService;
-
-    @Autowired
-    GraphicsService graphicsService;
-
 
     @Autowired
     NoteService noteService;
@@ -41,14 +39,15 @@ public class ProfileController {
     public ModelAndView getProfilePage() {
         User user = sessionBean.getUser();
         ModelAndView modelAndView = new ModelAndView();
-        graphicsService.saveChart(user.getId());
-        ArrayList<Note> notesMonthAgo = noteService.getNotesByUser_idMonthAgo(sessionBean.getUser().getId());
         modelAndView.addObject("user", user);
+
+        ArrayList<Note> notesMonthAgo = noteService.getNotesByUser_idMonthAgo(sessionBean.getUser().getId());
         if (notesMonthAgo.size() != 0) {
             modelAndView.addObject("notesMonthAgo", notesMonthAgo);
         } else {
             modelAndView.addObject("message", "Нет записей месяц назад");
         }
+
         ArrayList<Note> notesYearAgo = noteService.getNotesByUser_idYearAgo(sessionBean.getUser().getId());
         if (notesYearAgo.size() != 0) {
             modelAndView.addObject("notesYearAgo", notesYearAgo);
@@ -56,7 +55,7 @@ public class ProfileController {
             modelAndView.addObject("messageYear", "Нет записей год назад");
         }
 
-        modelAndView.addObject("img", "assets/img/charts/chart" + user.getId() + ".png");
+        modelAndView.addObject("img", "assets\\img\\chart" + user.getId() + ".png");
         modelAndView.setViewName("profile");
         return modelAndView;
     }

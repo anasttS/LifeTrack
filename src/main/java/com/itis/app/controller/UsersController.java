@@ -1,11 +1,9 @@
 package com.itis.app.controller;
 
 import com.itis.app.dto.UserDto;
-import com.itis.app.model.User;
-import com.itis.app.scope.CustomBean;
+//import com.itis.app.scope.customScope.CustomBean;
 import com.itis.app.scope.RequestBean;
 import com.itis.app.scope.SessionBean;
-import com.itis.app.security.details.UserDetailsImpl;
 import com.itis.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -27,19 +25,19 @@ public class UsersController {
     RequestBean myRequestBean;
 
     @Autowired
-    CustomBean bean;
+    SessionBean bean;
 
     @Autowired
     UserService userService;
 
     @GetMapping("/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
-    @Scope("custom")
+//    @Scope("custom")
     public ModelAndView delete(@RequestParam Long id){
-        bean.deactivate(userService.getCodeFromUserByUserId(id));
+//        bean.deactivate();
         ModelAndView modelAndView = new ModelAndView();
         userService.delete(id);
-        modelAndView.setViewName("/signIn");
+        modelAndView.setViewName("redirect:/users");
         return modelAndView;
     }
 
@@ -52,18 +50,17 @@ public class UsersController {
         return modelAndView;
     }
 
-
-
     @GetMapping("/users")
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestScope
-    @Scope("custom")
+//    @Scope("custom")
     public ModelAndView getUsersPage(Authentication authentication, Model model) {
-        System.out.println(myRequestBean.getData(authentication));
-        bean.countOfUsers();
+ //       System.out.println(myRequestBean.getData(authentication));
+//        System.out.println("Count of activated users" + bean.getCount());
         ModelAndView modelAndView = new ModelAndView();
         if(authentication != null){
         List<UserDto> users = userService.getAllUsers();
+        model.addAttribute("user", bean.getUser());
         model.addAttribute("users", users);
         modelAndView.setViewName("users");
         } else {

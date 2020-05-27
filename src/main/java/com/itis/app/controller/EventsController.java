@@ -5,6 +5,7 @@ import com.itis.app.model.Event;
 import com.itis.app.scope.SessionBean;
 import com.itis.app.service.EventsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 @Controller
 @PreAuthorize("isAuthenticated()")
+@Scope("pages")
 public class EventsController {
 
     @Autowired

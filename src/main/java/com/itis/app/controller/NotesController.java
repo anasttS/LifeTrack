@@ -4,6 +4,7 @@ import com.itis.app.dto.NoteDto;
 import com.itis.app.scope.SessionBean;
 import com.itis.app.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @PreAuthorize("isAuthenticated()")
+@Scope("pages")
 public class NotesController {
 
     @Autowired
