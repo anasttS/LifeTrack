@@ -406,7 +406,7 @@
             <h1 class="title">Type your username</h1>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
-                    <input type="text" id="name" placeholder="${user.username}" autocomplete="off" class="form-control" />
+                    <input type="text" id="name"  value="${user.username}" autocomplete="off" class="form-control" />
                 </div>
                 <div class="form-group">
                     <button type="submit" class="accent username-submit">Start Chatting</button>

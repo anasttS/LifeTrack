@@ -1,6 +1,7 @@
 package com.itis.app.service;
 
 import com.itis.app.dto.UpdateDto;
+import com.itis.app.dto.UserDto;
 import com.itis.app.model.FileData;
 import com.itis.app.model.User;
 import com.itis.app.repository.UserRepository;
@@ -42,8 +43,26 @@ public class UpdateProfileServiceImpl implements UpdateProfileService {
             userRepository.save(user);
             sessionBean.setUser(user);
         }
-
     }
+
+//    @Override
+//    public void changeChart(User form, Long id) {
+//        Optional<User> userToUpdate = userRepository.findUserById(id);
+//        MultipartFile file = (MultipartFile) form.getChart();
+//        FileData fileForUpdate;
+//        if (userToUpdate.isPresent()) {
+//            User user = userToUpdate.get();
+//            if (file != null) {
+//                fileForUpdate = fileStorageService.saveFile((MultipartFile) form.getChart());
+//            } else {
+//                fileForUpdate = user.getChart();
+//            }
+//            user.setChart(fileForUpdate);
+//
+//            userRepository.save(user);
+//            sessionBean.setUser(user);
+//        }
+//    }
 }
 
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <title>Profile</title>
 
-    <meta http-equiv="Refresh" content="20"/>
+    <meta http-equiv="Refresh" content="10"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -98,7 +98,7 @@
     <!-- =============================================== -->
 
     <!-- Left side column. contains the sidebar -->
-    <aside class="main-sidebar" style="margin: 0; background-color: whitesmoke">
+    <aside class="main-sidebar" style="margin: 0; background-color: whitesmoke; width: 300px">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
@@ -126,6 +126,12 @@
                         <span>Записи</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/support">
+                        <i class="fa " aria-hidden="true"></i>
+                        <span>Чат</span>
+                    </a>
+                </li>
             <#--<li>-->
             <#--<a href="/habits">-->
             <#--<i class="fa " aria-hidden="true"></i>-->
@@ -141,7 +147,7 @@
 
     <!-- =============================================== -->
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="padding-left: 100px">
 
         <section class="content">
             <h1>Здравствуйте, ${user.username} </h1>
@@ -157,6 +163,9 @@
     <img src="files/${user.img.storageFileName}" class="img-thumbnail2 round" alt="..."
          width="300px"
          height="300px">
+                        <div class="row" id="media">
+                            <input name="img" placeholder="photo" type="file"/>
+                        </div>
     <p></p>
                         </#if>
 
@@ -195,7 +204,7 @@
                     </div>
                 </div>
             </div>
-<#--<p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>-->
+        <#--<p><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> </p>-->
             <br><br>
             <div class="raw justify-content-start">
 
@@ -371,36 +380,36 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <small>&copy; 2020 Lifetrack - <a href="/support">Служба поддержки</a></small>
+                    <small>&copy; 2020 Lifetrack</small>
                 </div>
             </div>
         </div>
     </footer>
     <!--site-footer end-->
 
-    <div class="modal fade" id="event" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Лучший день!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="assets/img/loft.jpg" class="card-img-top" alt="...">
-                    <br>
-                    <br>
-                    <label>
-                                <textarea style="width: 468px">
-</textarea>
-                    </label>
-                </div>
+<#--<div class="modal fade" id="event" tabindex="-1" role="dialog"-->
+<#--aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<#--<div class="modal-dialog" role="document">-->
+<#--<div class="modal-content">-->
+<#--<div class="modal-header">-->
+<#--<h5 class="modal-title" id="exampleModalLabel">Лучший день!</h5>-->
+<#--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<#--<span aria-hidden="true">&times;</span>-->
+<#--</button>-->
+<#--</div>-->
+<#--<div class="modal-body">-->
+<#--<img src="assets/img/loft.jpg" class="card-img-top" alt="...">-->
+<#--<br>-->
+<#--<br>-->
+<#--<label>-->
+<#--<textarea style="width: 468px">-->
+<#--</textarea>-->
+<#--</label>-->
+<#--</div>-->
 
-            </div>
-        </div>
-    </div>
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
 
 
 <#--<!--AvaStat counter&ndash;&gt;-->

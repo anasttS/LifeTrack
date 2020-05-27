@@ -2,6 +2,7 @@ package com.itis.app.repository;
 
 import com.itis.app.model.Event;
 import com.itis.app.model.User;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

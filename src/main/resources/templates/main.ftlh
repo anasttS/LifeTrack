@@ -67,7 +67,7 @@
     <section class="container text-center welcome-message">
         <div class="row">
             <div class="col-md-12">
-                <#--<h1>Запомни каждый день!</h1>-->
+                <h1>Запомни каждый день!</h1>
                 <h1>   </h1>
                 <!-- <div class="play-btn">
                     <a href="https://vimeo.com/109054393" class="play litebox-hero">

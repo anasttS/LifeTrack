@@ -3,6 +3,7 @@ package com.itis.app.repository;
 
 import com.itis.app.model.FileData;
 import com.itis.app.model.User;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

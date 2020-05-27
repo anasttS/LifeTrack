@@ -18,6 +18,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ExtensionFileFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.Session;
 import javax.swing.*;
@@ -97,12 +98,11 @@ public class GraphicsServiceImpl implements GraphicsService {
     @SneakyThrows
     @LogExecutionTime
     public void saveChart(Long id) {
+
         String filename = "C:\\ITIS.JAVA\\LifeTrack\\src\\main\\resources\\static\\assets\\img";
-//        System.out.println(filename);
-        filename = filename + "\\charts\\chart" + id + ".png";
+        filename = filename + "\\chart" + id + ".png";
         ChartUtilities.saveChartAsPNG(new File(filename), createChart(), 1000, 200);
     }
-    // ChartUtilities.saveChartAsPNG(new File("files/charts/chart" + id + ".png"), createChart(), 260, 200);
 }
 
 

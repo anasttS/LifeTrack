@@ -1,5 +1,6 @@
 package com.itis.app.dto;
 
+import com.itis.app.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +23,7 @@ public class NoteDto {
     private MultipartFile photo;
     private MultipartFile  video;
     private String date;
-    private Long idu;
+    private User user;
 
 
 }

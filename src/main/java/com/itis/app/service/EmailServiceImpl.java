@@ -2,6 +2,7 @@ package com.itis.app.service;
 
 import com.itis.app.model.MailMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     JavaMailSender javaMailSender;
 
+    @Scope(scopeName = "email")
     public void sendMail(MailMessage mailMessage) {
         new Thread(() -> {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();

@@ -6,6 +6,7 @@ import com.itis.app.repository.DatasetRepository;
 import com.itis.app.repository.NoteRepository;
 import com.itis.app.scope.SessionBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,9 +30,10 @@ public class AnalyseDataServiceImpl implements AnalyseDataService {
     public void getPercentOfActivityInYearByEachMonth(Integer year) {
         String date;
         User user = sessionBean.getUser();
-      //  System.out.println(user.toString());
+//        System.out.println(user.toString());
         ArrayList<Dataset> datasets = datasetRepository.findAllByUser(user);
         ArrayList<Float> percents = new ArrayList<>();
+
         for (int month = 1; month <= 12; month++) {
             YearMonth yearMonthObject = YearMonth.of(year, month);
             Integer daysInMonth = yearMonthObject.lengthOfMonth();

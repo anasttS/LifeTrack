@@ -113,17 +113,17 @@
     </div>
 </header>
 <!-- Site wrapper -->
-<div class="wrapper">
+<div class="wrapper" style="margin: 0; background-color: whitesmoke" >
     <!-- =============================================== -->
 
     <!-- Left side column. contains the sidebar -->
-    <aside class="main-sidebar">
+    <aside class="main-sidebar" style="margin: 0; background-color: whitesmoke; width: 300px">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
+
                 <li>
 
                 </li>
@@ -145,23 +145,29 @@
                         <span>Записи</span>
                     </a>
                 </li>
-                <#--<li>-->
-                    <#--<a href="/habits">-->
-                        <#--<i class="fa " aria-hidden="true"></i>-->
-                        <#--<span>Трекер привычек</span>-->
-                    <#--</a>-->
-                <#--</li>-->
+                <li>
+                    <a href="/support">
+                        <i class="fa " aria-hidden="true"></i>
+                        <span>Чат</span>
+                    </a>
+                </li>
+            <#--<li>-->
+            <#--<a href="/habits">-->
+            <#--<i class="fa " aria-hidden="true"></i>-->
+            <#--<span>Трекер привычек</span>-->
+            <#--</a>-->
+            <#--</li>-->
+
 
             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
 
-
     <!-- =============================================== -->
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!--                <div class="loading">-->
+    <div class="content-wrapper" style="padding-left: 100px">
+        <!--<div class="loading">-->
         <!--                    <div></div>-->
         <!--                </div>-->
         <section class="content">
@@ -187,66 +193,75 @@
                 </div>
 
                 <br> <br>
+                <div class="container-fluid">
+                    <div class="row">
                  <#list notes as note>
-             <div class="card" style="width: 17rem;">
-                 <img src="files/${note.photo.storageFileName}" class="card-img-top" alt="...">
-                 <div class="card-body" style="height: 185px;">
-                     <h5 class="card-title">${note.name}</h5>
-                     <p class="card-text">${note.date}</p>
-                     <br>
-                     <form action="/notes" method="get">
-                         <button type="button" class="btn btn_red " style="margin-left: 50px" name="id"
-                                 data-toggle="modal"
-                                 data-target="#note${note.id_note}">
-                             Посмотреть
-                         </button>
-                     </form>
-                 </div>
-             </div>
+                     <div class="card" style="width: 17rem;">
+                         <img src="files/${note.photo.storageFileName}" class="card-img-top" alt="...">
+                         <div class="card-body" style="height: 185px;">
+                             <h5 class="card-title">${note.name}</h5>
+                             <p class="card-text">${note.date}</p>
+                             <br>
+                             <form action="/notes" method="get">
+                                 <button type="button" class="btn btn_red " style="margin-left: 50px" name="id"
+                                         data-toggle="modal"
+                                         data-target="#note${note.id_note}">
+                                     Посмотреть
+                                 </button>
+                             </form>
+                         </div>
+                     </div>
 
-                <div class="modal fade" id="note${note.id_note}" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">${note.name}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div id="sliderBigImages${note.id_note}" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="files/${note.photo.storageFileName}" class="card-img-top"
-                                                 alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <video controls  width="450" height="300" preload="none">
-                                                <source src="files/${note.video.getStorageFileName()}" type="video/mp4">
-                                            </video>
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#sliderBigImages${note.id_note}" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#sliderBigImages${note.id_note}" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-                                <br>
-                                <label>
-                                    <textarea style="width: 468px"> ${note.text} </textarea>
-                                </label>
+                     <div class="modal fade" id="note${note.id_note}" tabindex="-1" role="dialog"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title" id="exampleModalLabel">${note.name}</h5>
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <div id="sliderBigImages${note.id_note}" class="carousel slide"
+                                          data-ride="carousel">
+                                         <div class="carousel-inner">
+                                             <div class="carousel-item active">
+                                                 <img src="files/${note.photo.storageFileName}" class="card-img-top"
+                                                      alt="...">
+                                             </div>
+                                             <div class="carousel-item">
+                                                 <video controls width="450" height="300" preload="none">
+                                                     <source src="files/${note.video.getStorageFileName()}"
+                                                             type="video/mp4">
+                                                 </video>
+                                             </div>
+                                         </div>
+                                         <a class="carousel-control-prev" href="#sliderBigImages${note.id_note}"
+                                            role="button" data-slide="prev">
+                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Previous</span>
+                                         </a>
+                                         <a class="carousel-control-next" href="#sliderBigImages${note.id_note}"
+                                            role="button" data-slide="next">
+                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                             <span class="sr-only">Next</span>
+                                         </a>
+                                     </div>
+                                     <br>
+                                     <label>
+                                         <textarea style="width: 468px"> ${note.text} </textarea>
+                                     </label>
 
-                            </div>
-                        </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                 </#list>
                     </div>
                 </div>
 
-                 </#list>
                 <!--            циклом перечислены события -->
 
             </div>
@@ -293,11 +308,12 @@
                             Опишите день одной фразой
                         </h6>
                         <input name="name" type="text"/>
+                        <br><br>
                         <h6 style="text-decoration-color: grey; color: grey">
                             Загрузите фото или видео, связанное с сегодняшним днем
                         </h6>
-                        <input name="photo" placeholder="photo" type="file"/>
-                        <input name="video" placeholder="video" type="file"/>
+                        <input name="photo"  type="file"/> Фото
+                        <input name="video"  type="file"/> Видео
                         <br><br>
                         <h6 style="text-decoration-color: grey; color: grey">
                             Расскажите, как прошел Ваш день

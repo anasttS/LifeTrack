@@ -17,10 +17,17 @@ import java.util.Date;
 @Service
 public class NoteServiceImpl implements NoteService {
 
-@Autowired
-UserService userService;
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    GraphicsService graphicsService;
+
     @Autowired
     private FileStorageService fileStorageService;
+
+    @Autowired
+    UpdateProfileService updateProfileService;
 
 
     @Autowired
@@ -38,6 +45,8 @@ UserService userService;
                 .user(userService.findUserById(id))
                 .build();
         noteRepository.save(note);
+        graphicsService.saveChart(id);
+//        updateProfileService.changeChart(userService.findUserById(id), id);
     }
 
 
@@ -74,7 +83,7 @@ UserService userService;
             if (monthPred < 10) {
                 date = currentYear + "-0" + monthPred + "-" + day;
             } else {
-                date = currentYear + "-" + monthPred+ "-" + day;
+                date = currentYear + "-" + monthPred + "-" + day;
             }
         }
 

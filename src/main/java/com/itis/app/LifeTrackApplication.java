@@ -1,14 +1,14 @@
 package com.itis.app;
 
 //import com.itis.app.scope.customScope.CustomBeanFactoryPostProcessor;
+
 import bell.oauth.discord.main.OAuthBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itis.app.scope.customScope.PagesBeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.context.annotation.ApplicationScope;
@@ -23,6 +23,11 @@ public class LifeTrackApplication {
                 .setScopes(new String[]{"connections", "guilds", "email"})
                 .setRedirectURI("http://localhost:8080/signInDiscord");
         return builder;
+    }
+
+    @Bean
+    public static BeanFactoryPostProcessor beanFactoryPostProcessor() {
+        return new PagesBeanFactoryPostProcessor();
     }
 
     @Bean

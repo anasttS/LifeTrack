@@ -1,3 +1,4 @@
+<#import "spring.ftl" as spring />
 <!DOCTYPE html>
 <html lang="en" class="mdl-js">
 <head>
@@ -85,18 +86,21 @@
                             <div class="form-group">
                                 <label>Ваш email *</label>
                                 <input type="text" class="form-control" id="email" placeholder="Ваш email" name="email"
-                                       onchange="checkEmail()"required>
+                                       onchange="checkEmail()" required>
+                                 <#--<@spring.showErrors "<br>"/>-->
                             </div>
                             <div class="form-group">
                                 <label>Имя *</label>
                                 <input type="text" class="form-control" placeholder="Ваше имя" name="username"
                                        required>
+                                 <#--<@spring.showErrors "<br>"/>-->
                             </div>
                             <div class="form-group">
                                 <label>Пароль *</label>
                                 <input type="password" ONINPUT="checkPassword()" class="form-control"
                                        placeholder="Придумайте пароль"
                                        name="password" id="password1" required>
+                                 <#--<@spring.showErrors "<br>"/>-->
                             </div>
                             <div class="form-group">
                                 <label>Повторите пароль *</label>
@@ -106,7 +110,7 @@
                             </div>
 
 
-                            <#--<input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
+                        <#--<input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
                             <div class="form-group">
                                 <div class="col-12" style="color: #000000; font-size: 16px">
                                     Пароль должен удовлетворять требованиям:
@@ -126,7 +130,7 @@
 
                             <div class="form-group">
                                 <br>
-                                <button type="submit"  class="btn">
+                                <button type="submit" class="btn" onclick="f()">
                                     Зарегистрироваться
                                 </button>
                             </div>
@@ -143,6 +147,7 @@
     </div>
 </section>
 <script>
+
 
     function checkPasswords() {
         var password1 = document.getElementById('password1');
@@ -195,8 +200,14 @@
         if (!(cond1 && cond2 && cond3)) {
             return false;
         }
-
     }
+
+    function f() {
+        if (!(checkPasswords() && checkPassword() && checkEmail())) {
+            return
+        }
+    }
+
 
 </script>
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>

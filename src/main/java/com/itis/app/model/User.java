@@ -32,6 +32,10 @@ public class User {
     @JoinColumn(name = "img")
     private FileData img;
 
+//    @OneToOne
+//    @JoinColumn(name = "chart")
+//    private FileData chart;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -44,9 +48,9 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Event> events;
 
-    @OneToOne
-    @JoinColumn(name = "dataset")
-    private Dataset dataset;
+//    @OneToOne
+//    @JoinColumn(name = "dataset")
+//    private Dataset dataset;
 
     private  String confirmCode;
 }

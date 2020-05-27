@@ -1,13 +1,13 @@
 package com.itis.app.controller;
 
-import com.itis.app.scope.CustomBean;
+//import com.itis.app.scope.customScope.CustomBean;
+import com.itis.app.scope.SessionBean;
 import com.itis.app.service.ConfirmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -15,15 +15,18 @@ public class SignInController {
 
 
     @Autowired
-    ConfirmService confirmService;
+    SessionBean sessionBean;
 
     @Autowired
-    CustomBean bean;
+    ConfirmService confirmService;
 
-    @GetMapping("/signIn")
-    public ModelAndView getSignInPage(Authentication authentication){
+//    @Autowired
+//    CustomBean bean;
+
+    @RequestMapping(value = {"/signIn"}, method = RequestMethod.GET)
+    public ModelAndView getSignInPage(){
         ModelAndView modelAndView = new ModelAndView();
-        if (authentication != null) {
+        if (sessionBean.getUser() != null) {
             modelAndView.setViewName("redirect:/profile");
         } else {
             modelAndView.setViewName("signIn");
@@ -31,18 +34,31 @@ public class SignInController {
         return modelAndView;
     }
 
+
+    @RequestMapping(value = {"/signIn?"}, method = RequestMethod.GET)
+    public ModelAndView getSignInPageWithMessage(@RequestParam String message){
+        ModelAndView modelAndView = new ModelAndView();
+        if (sessionBean.getUser() != null) {
+            modelAndView.setViewName("redirect:/profile");
+        } else {
+            modelAndView.addObject("message", message);
+            modelAndView.setViewName("signIn");
+        }
+        return modelAndView;
+    }
+
     @GetMapping("/activate")
-    @Scope("custom")
+//    @Scope("custom")
     public ModelAndView activate(@RequestParam("code") String code) {
         ModelAndView modelAndView = new ModelAndView();
-        bean.activate(code);
+//        bean.activate();
         boolean isActivated = confirmService.activateUser(code);
         if (isActivated) {
-            modelAndView.addObject("message", "User successfully activated");
+            modelAndView.addObject("message", "User is successfully activated");
         } else {
             modelAndView.addObject("message", "Activation code is not found!");
         }
-        modelAndView.setViewName("/redirect:/signIn");
+        modelAndView.setViewName("redirect:/signIn");
         return modelAndView;
     }
 

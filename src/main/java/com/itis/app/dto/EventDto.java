@@ -1,6 +1,7 @@
 package com.itis.app.dto;
 
 
+import com.itis.app.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +21,5 @@ public class EventDto {
     private String description;
     private Date date;
     private LocalTime time;
-    private Long idu;
+    private User user;
 }

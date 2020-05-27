@@ -7,9 +7,11 @@ import com.itis.app.model.State;
 import com.itis.app.model.User;
 import com.itis.app.scope.SessionBean;
 import com.itis.app.security.details.UserDetailsImpl;
+import com.itis.app.service.GraphicsService;
 import com.itis.app.service.SignUpService;
 import com.itis.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,9 @@ public class DiscordController {
     UserService userService;
 
     @Autowired
+    GraphicsService graphicsService;
+
+    @Autowired
     SignUpService signUpService;
 
     @Autowired
@@ -48,6 +53,7 @@ public class DiscordController {
             signUpDto.setUsername(userFromDis.getUsername());
             User user1 = signUpService.signUpDiscord(signUpDto);
             sessionBean.setUser(user1);
+            graphicsService.saveChart(user1.getId());
             UserDetailsImpl userDetails = new UserDetailsImpl(user1);
             UsernamePasswordAuthenticationToken token
                     = new UsernamePasswordAuthenticationToken(userDetails, user1.getHashPassword(), userDetails.getAuthorities());
@@ -57,6 +63,7 @@ public class DiscordController {
         } else {
             UserDetailsImpl userDetails = new UserDetailsImpl(user);
             sessionBean.setUser(user);
+            graphicsService.saveChart(user.getId());
             UsernamePasswordAuthenticationToken token
                     = new UsernamePasswordAuthenticationToken(userDetails, user.getHashPassword(), userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(token);

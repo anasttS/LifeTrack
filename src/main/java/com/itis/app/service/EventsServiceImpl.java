@@ -5,6 +5,7 @@ import com.itis.app.model.Event;
 import com.itis.app.model.User;
 import com.itis.app.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
