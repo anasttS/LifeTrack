@@ -170,59 +170,6 @@ Featured on
 </section>
 <!--Featured on end-->
 
-<!--
-Features
--->
-<!--<div class="features section-spacing">-->
-<!--    <div class="container">-->
-<!--        &lt;!&ndash;feature 1&ndash;&gt;-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-7 text-center">-->
-<!--                <img src="assets/img/feature-1.png" alt="feature"/>-->
-<!--            </div>-->
-<!--            <div class="col-md-5">-->
-<!--                <article>-->
-<!--                    <h2>Удобный интерфейс</h2>-->
-<!--                    <p>Продвинутый интерфейс управления Вашими событиями. Вы с легкостью можете создавать,-->
-<!--                        редактировать, перемещать Ваши записи прямо на календаре.</p>-->
-
-<!--                </article>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;feature 1 end&ndash;&gt;-->
-<!--        &lt;!&ndash;feature 2&ndash;&gt;-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-7 text-center">-->
-<!--                <img src="assets/img/feature-2.png" alt="feature"/>-->
-<!--            </div>-->
-<!--            <div class="col-md-5">-->
-<!--                <article>-->
-<!--                    <h2>Расширенная статистика</h2>-->
-<!--                    <p>Сервис показывает статистику Вашей активности и много дополнительной интересной информации о Вас.-->
-<!--                        Возможно, текущая неделя у Вас юбилейная!</p>-->
-<!--                    <p>А еще всегда интересно узнать что произошло в этот день в предыдущие года!</p>-->
-
-<!--                </article>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;feature 2 end&ndash;&gt;-->
-<!--        &lt;!&ndash;feature 3&ndash;&gt;-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-7 text-center">-->
-<!--                <img src="assets/img/feature-3.png" alt="feature"/>-->
-<!--            </div>-->
-<!--            <div class="col-md-5">-->
-<!--                <article>-->
-<!--                    <h2>Лента жизни</h2>-->
-<!--                    <p>Сложив все записанные события в единое полотно, получим Ленту жизни — Мемуарник!</p>-->
-
-<!--                </article>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;feature 3 end&ndash;&gt;-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash;Features end&ndash;&gt;-->
 
 <!--site-footer-->
 <footer class="site-footer section-spacing text-center">
@@ -253,62 +200,6 @@ Features
 <script src="js/lp/lp.js"></script>
 
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function () {
-            try {
-                w.yaCounter50640868 = new Ya.Metrika({
-                    id: 50640868,
-                    clickmap: true,
-                    trackLinks: true,
-                    accurateTrackBounce: true,
-                    webvisor: true
-                });
-            } catch (e) {
-            }
-        });
-
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () {
-                n.parentNode.insertBefore(s, n);
-            };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else {
-            f();
-        }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-
-<!--AvaStat counter-->
-<script type="text/javascript">
-    var u = '';
-    if (document.cookie) {
-        new Image().src = "/ava/statistic/dot?rf=" +
-            myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
-                "&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?
-                screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)
-            + "&u=" + u
-            + "&r=" + Math.random();
-    }
-
-    function myescape(str) {
-        str = str.replace(/https:\/\//, "");
-        str = str.replace(/http:\/\//, "");
-        return escape(str.replace(/\//g, "*"));
-    }
-</script>
-
-<noscript>
-    <div><img src="https://mc.yandex.ru/watch/50640868" style="position:absolute; left:-9999px;" alt=""/></div>
-</noscript>
-<!-- /Yandex.Metrika counter -->
 
 </body>
 </html>

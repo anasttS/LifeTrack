@@ -165,12 +165,14 @@
         <#--<#if !(user.role == "ADMIN")>-->
             <form method="get" action="/changeRole">
                 <td>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <button name="id" value="${user.id}">Change role</button>
                 </td>
             </form>
 
             <form method="get" action="/delete">
                 <td>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <button name="id" value="${user.id}">Delete</button>
                 </td>
             </form>

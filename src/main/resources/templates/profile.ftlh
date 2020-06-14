@@ -159,6 +159,7 @@
                         <div class="row-2">
                             <form method="post" action="/updateProfile" name="updateProfile"
                                   enctype="multipart/form-data">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <#if user.img?has_content>
     <img src="files/${user.img.storageFileName}" class="img-thumbnail2 round" alt="..."
          width="300px"

@@ -105,7 +105,7 @@
                                     <label class="form-check-label" for="checkRememberMe">Remember me?</label>
                                 </div>
                                 <#--<input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
-
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                 <div class="form-group" >
                                     <br>
                                     <button type="submit" class="btn">Войти</button>

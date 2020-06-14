@@ -203,6 +203,7 @@
                              <p class="card-text">${note.date}</p>
                              <br>
                              <form action="/notes" method="get">
+                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                  <button type="button" class="btn btn_red " style="margin-left: 50px" name="id"
                                          data-toggle="modal"
                                          data-target="#note${note.id_note}">
@@ -321,6 +322,7 @@
                         <label>
                             <textarea name="text" style="width: 468px"></textarea>
                         </label>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <div class="modal-footer">
                             <button type="submit" class="btn btn_red" name="add">
                                 Добавить

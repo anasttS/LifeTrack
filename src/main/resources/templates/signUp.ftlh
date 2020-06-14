@@ -109,7 +109,7 @@
                                        name="password2" id="password2" onchange="checkPasswords()" required>
                             </div>
 
-
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <#--<input hidden="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">-->
                             <div class="form-group">
                                 <div class="col-12" style="color: #000000; font-size: 16px">

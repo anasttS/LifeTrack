@@ -1,4 +1,4 @@
-package com.itis.app.security.config;
+package com.itis.app.config;
 
 import com.itis.app.filters.CustomFilter;
 
@@ -37,9 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
-        http.csrf().disable();
-
         http.addFilterAfter(new CustomFilter(), FilterSecurityInterceptor.class);
 
         http.authorizeRequests()
@@ -64,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .deleteCookies("SESSION", "remember-me")
                 .logoutSuccessUrl("/signIn");
 
     }

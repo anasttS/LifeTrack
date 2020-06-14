@@ -1,7 +1,9 @@
-package com.itis.app.scope;
+package com.itis.app.config;
 
 //import com.itis.app.scope.customScope.CustomBean;
 
+import com.itis.app.scope.RequestBean;
+import com.itis.app.scope.SessionBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

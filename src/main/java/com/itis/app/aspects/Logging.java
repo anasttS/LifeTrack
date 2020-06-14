@@ -17,7 +17,10 @@ import java.util.logging.Logger;
 @Aspect
 public class Logging {
 
-    @Before(value= "execution(* com.itis.app.service.SignUpServiceImpl.signUp(..))")
+    @Pointcut("execution(public * com.itis.app.service.SignUpServiceImpl.signUp(..))")
+    public void signUpLog() { }
+
+    @Before("signUpLog()")
     public void logSignUp(JoinPoint jp){
         SignUpDto user = (SignUpDto) jp.getArgs()[0];
         System.out.println("User " + user.getUsername() + " try to sign up");

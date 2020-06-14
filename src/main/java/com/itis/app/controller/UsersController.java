@@ -32,9 +32,7 @@ public class UsersController {
 
     @GetMapping("/delete")
     @PreAuthorize("hasAuthority('ADMIN')")
-//    @Scope("custom")
     public ModelAndView delete(@RequestParam Long id){
-//        bean.deactivate();
         ModelAndView modelAndView = new ModelAndView();
         userService.delete(id);
         modelAndView.setViewName("redirect:/users");
@@ -53,10 +51,8 @@ public class UsersController {
     @GetMapping("/users")
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestScope
-//    @Scope("custom")
     public ModelAndView getUsersPage(Authentication authentication, Model model) {
- //       System.out.println(myRequestBean.getData(authentication));
-//        System.out.println("Count of activated users" + bean.getCount());
+        System.out.println(myRequestBean.getData(authentication));
         ModelAndView modelAndView = new ModelAndView();
         if(authentication != null){
         List<UserDto> users = userService.getAllUsers();

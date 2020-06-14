@@ -201,6 +201,7 @@
                         <p class="card-text">${event.date} ${event.time}</p>
                         <p class="card-text">${event.description}</p>
                         <form action="/deleteEvent" method="get" style="margin-left: 120px;">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <button class="btn btn-secondary" name="id" value="${event.ide}">
                                 Выполнено
                             </button>
@@ -259,7 +260,7 @@
                         <label> Время
                             <input type="time" class="form-control" name="time" id="time" style="width: 468px"/>
                         </label>
-
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <div class="modal-footer">
                             <button type="submit" class="btn btn_red" name="add">
                                 Добавить
@@ -271,69 +272,6 @@
         </div>
     </div>
 </div>
-
-
-<#--<!--AvaStat counter&ndash;&gt;-->
-<#--<script type="text/javascript">-->
-<#--var u = '';-->
-<#--u = 'Настя ';-->
-<#--if (document.cookie) {-->
-<#--new Image().src = "/ava/statistic/dot?rf=" +-->
-<#--myescape(document.referrer) + ((typeof (screen) == "undefined") ? "" :-->
-<#--"&sw=" + screen.width + "&sh=" + screen.height + "&sd=" + (screen.colorDepth ?-->
-<#--screen.colorDepth : screen.pixelDepth)) + "&url=" + myescape(document.URL)-->
-<#--+ "&u=" + u-->
-<#--+ "&r=" + Math.random();-->
-<#--}-->
-
-<#--function myescape(str) {-->
-<#--str = str.replace(/https:\/\//, "");-->
-<#--str = str.replace(/http:\/\//, "");-->
-<#--return escape(str.replace(/\//g, "*"));-->
-<#--}-->
-<#--</script>-->
-<#--<!--/AvaStat&ndash;&gt;-->
-
-<#--</div>-->
-<#--<!-- ./wrapper &ndash;&gt;-->
-
-
-<#--<!-- Yandex.Metrika counter &ndash;&gt;-->
-<#--<script type="text/javascript">-->
-<#--(function (d, w, c) {-->
-<#--(w[c] = w[c] || []).push(function () {-->
-<#--try {-->
-<#--w.yaCounter50640868 = new Ya.Metrika({-->
-<#--id: 50640868,-->
-<#--clickmap: true,-->
-<#--trackLinks: true,-->
-<#--accurateTrackBounce: true,-->
-<#--webvisor: true-->
-<#--});-->
-<#--} catch (e) {-->
-<#--}-->
-<#--});-->
-
-<#--var n = d.getElementsByTagName("script")[0],-->
-<#--s = d.createElement("script"),-->
-<#--f = function () {-->
-<#--n.parentNode.insertBefore(s, n);-->
-<#--};-->
-<#--s.type = "text/javascript";-->
-<#--s.async = true;-->
-<#--s.src = "https://mc.yandex.ru/metrika/watch.js";-->
-
-<#--if (w.opera == "[object Opera]") {-->
-<#--d.addEventListener("DOMContentLoaded", f, false);-->
-<#--} else {-->
-<#--f();-->
-<#--}-->
-<#--})(document, window, "yandex_metrika_callbacks");-->
-<#--</script>-->
-<noscript>
-    <div><img src="https://mc.yandex.ru/watch/50640868" style="position:absolute; left:-9999px;" alt=""/></div>
-</noscript>
-<!-- /Yandex.Metrika counter -->
 
 
 </body>
